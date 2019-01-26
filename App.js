@@ -61,17 +61,16 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
+        <Header
+          centerComponent={{ text: '¿Donde querés comer?', style: { color: '#ffffff' } }}
+        />
+        
         <ScrollView>
-          <Header
-            centerComponent={{ text: '¿Donde querés comer?', style: { color: '#ffffff' } }}
-          />
-
           <ListView
             dataSource={this.state.dataSourceRestaurants}
             renderRow={(restaurant) => this.buildRestaurant(restaurant)}
           />
-
         </ScrollView>
       </View>
     );
@@ -82,7 +81,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    alignItems: 'center',
     justifyContent: 'center',
   },
 });
