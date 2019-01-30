@@ -46,7 +46,7 @@ export default class ProjectSelect extends React.Component {
         title={project.name}
         image={{uri: this.getImage(project.id)}} >
         <Button
-          icon={{name: 'check'}}
+          icon={{name: 'favorite', color: "white"}}
           backgroundColor='#03A9F4'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='ayudar' />

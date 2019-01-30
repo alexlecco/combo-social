@@ -46,7 +46,7 @@ export default class RestaurantSelect extends React.Component {
         title={restaurant.name}
         image={{uri: this.getImage(restaurant.id)}} >
         <Button
-          icon={{name: 'check'}}
+          icon={{name: 'thumb-up', color: "white"}}
           backgroundColor='#03A9F4'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='comer aquí' />
@@ -60,7 +60,7 @@ export default class RestaurantSelect extends React.Component {
         <Header
           centerComponent={{ text: '¿Donde querés comer?', style: { color: '#ffffff' } }}
         />
-        
+
         <ScrollView>
           <ListView
             dataSource={this.state.dataSourceRestaurants}
