@@ -8,8 +8,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentSelect: 0
+      currentScreen: 0
     }
+    switchCurrentScreen = this.switchCurrentScreen.bind(this);
 
     console.disableYellowBox = true
     console.warn('YellowBox is disabled.')
@@ -17,10 +18,15 @@ export default class App extends React.Component {
     console.ignoredYellowBox = ['Setting a timer']
   }
 
-  render() {
-    const {currentSelect} = this.state;
+  switchCurrentScreen() {
+    this.state.currentScreen === 0 ? this.setState({currentScreen: 1}) : this.setState({currentScreen: 0})
+  }
 
-    if(currentSelect === 0) return (<RestaurantSelect />)
-    if(currentSelect === 1) return (<ProjectSelect />)
+  render() {
+    const {currentScreen} = this.state
+    let switchCurrentScreen = this.switchCurrentScreen
+
+    if(currentScreen === 0) return (<RestaurantSelect onSwitchCurrentScreen={this.switchCurrentScreen.bind(this)} />)
+    if(currentScreen === 1) return (<ProjectSelect onSwitchCurrentScreen={this.switchCurrentScreen.bind(this)} />)
   }
 }

@@ -1,16 +1,16 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView, ListView } from 'react-native';
-import { Header, Card, Button } from 'react-native-elements';
+import React from 'react'
+import { StyleSheet, View, ScrollView, ListView } from 'react-native'
+import { Header, Card, Button, Text } from 'react-native-elements'
 
 import { firebaseApp } from '../firebase'
 
 export default class ProjectSelect extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       dataSourceProjects: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
-    };
+    }
 
     this.projectsRef = firebaseApp.database().ref().child('projects')
   }
@@ -28,12 +28,12 @@ export default class ProjectSelect extends React.Component {
           id: child.val().id,
           name: child.val().name,
           _key: child.key,
-        });
-      });
+        })
+      })
       this.setState({
         dataSourceProjects: this.state.dataSourceProjects.cloneWithRows(projects)
       })
-    });
+    })
   }
 
   getImage(id) {
@@ -51,14 +51,27 @@ export default class ProjectSelect extends React.Component {
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='ayudar' />
       </Card>
-    );
+    )
+  }
+
+  buildButton() {
+    return(
+      <Text
+        onPress={() => this.props.onSwitchCurrentScreen()}
+        style={{color: '#ffffff'}}>
+          bares
+      </Text>
+    )
   }
 
   render() {
+    const buttonProjects = this.buildButton()
+
     return (
       <View style={styles.container}>
         <Header
-          centerComponent={{ text: '¿A que proyecto querés contribuir?', style: { color: '#ffffff' } }}
+          centerComponent={{ text: '¿En cuál querés ayudar?', style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
+          rightComponent={buttonProjects}
         />
 
         <ScrollView>
@@ -68,7 +81,7 @@ export default class ProjectSelect extends React.Component {
           />
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
@@ -78,4 +91,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     justifyContent: 'center',
   },
-});
+})

@@ -1,16 +1,16 @@
-import React from 'react';
-import { StyleSheet, View, ScrollView, ListView } from 'react-native';
-import { Header, Card, Button } from 'react-native-elements';
+import React from 'react'
+import { StyleSheet, View, ScrollView, ListView } from 'react-native'
+import { Header, Card, Button, Text } from 'react-native-elements'
 
 import { firebaseApp } from '../firebase'
 
 export default class RestaurantSelect extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       dataSourceRestaurants: new ListView.DataSource({ rowHasChanged: (row1, row2) => row1 !== row2 }),
-    };
+    }
 
     this.restaurantsRef = firebaseApp.database().ref().child('restaurants')
   }
@@ -21,19 +21,19 @@ export default class RestaurantSelect extends React.Component {
 
   listenForRestaurants(restaurantsRef) {
     restaurantsRef.on('value', (snap) => {
-      let restaurants = [];
+      let restaurants = []
       snap.forEach((child) => {
         restaurants.push({
           address: child.val().address,
           id: child.val().id,
           name: child.val().name,
           _key: child.key,
-        });
-      });
+        })
+      })
       this.setState({
         dataSourceRestaurants: this.state.dataSourceRestaurants.cloneWithRows(restaurants)
       })
-    });
+    })
   }
 
   getImage(id) {
@@ -51,14 +51,27 @@ export default class RestaurantSelect extends React.Component {
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='comer aquí' />
       </Card>
-    );
+    )
+  }
+
+  buildButton() {
+    return(
+      <Text
+        onPress={() => this.props.onSwitchCurrentScreen()}
+        style={{color: '#ffffff'}}>
+          proyectos
+      </Text>
+    )
   }
 
   render() {
+    const buttonProjects = this.buildButton()
+
     return (
       <View style={styles.container}>
         <Header
-          centerComponent={{ text: '¿Donde querés comer?', style: { color: '#ffffff' } }}
+          centerComponent={{ text: '¿Donde querés comer?', style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
+          rightComponent={buttonProjects}
         />
 
         <ScrollView>
@@ -68,7 +81,7 @@ export default class RestaurantSelect extends React.Component {
           />
         </ScrollView>
       </View>
-    );
+    )
   }
 }
 
@@ -78,4 +91,4 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
     justifyContent: 'center',
   },
-});
+})
