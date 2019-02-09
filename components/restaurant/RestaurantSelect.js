@@ -2,7 +2,8 @@ import React from 'react'
 import { StyleSheet, View, ScrollView, ListView } from 'react-native'
 import { Header, Card, Button, Text } from 'react-native-elements'
 
-import { firebaseApp } from '../firebase'
+import { firebaseApp } from '../../firebase'
+import RestaurantCard from './RestaurantCard'
 
 export default class RestaurantSelect extends React.Component {
   constructor(props) {
@@ -36,49 +37,30 @@ export default class RestaurantSelect extends React.Component {
     })
   }
 
-  getImage(id) {
-    return `https://firebasestorage.googleapis.com/v0/b/combo-social.appspot.com/o/restaurants%2F${id}.png?alt=media&token=84f5ccd9-506d-4940-a318-703169c32b60`
-  }
-
   buildRestaurant(restaurant) {
     return(
-      <Card
-        title={restaurant.name}
-        image={{uri: this.getImage(restaurant.id)}} >
-        <Button
-          icon={{name: 'thumb-up', color: "white"}}
-          backgroundColor='#03A9F4'
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          title='comer aquí' />
-      </Card>
-    )
-  }
-
-  buildButton() {
-    return(
-      <Text
-        onPress={() => this.props.onSwitchCurrentScreen()}
-        style={{color: '#ffffff'}}>
-          proyectos
-      </Text>
+      <RestaurantCard
+        restaurant={restaurant}
+        onSelectRestaurant={this.props.onSelectRestaurant}
+        onSwitchCurrentScreen={this.props.onSwitchCurrentScreen} />
     )
   }
 
   render() {
-    const buttonProjects = this.buildButton()
 
     return (
       <View style={styles.container}>
         <Header
           centerComponent={{ text: '¿Donde querés comer?', style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
-          rightComponent={buttonProjects}
         />
 
         <ScrollView>
-          <ListView
-            dataSource={this.state.dataSourceRestaurants}
-            renderRow={(restaurant) => this.buildRestaurant(restaurant)}
-          />
+          <View style={{paddingBottom: 15}}>
+            <ListView
+              dataSource={this.state.dataSourceRestaurants}
+              renderRow={(restaurant) => this.buildRestaurant(restaurant)}
+            />
+          </View>
         </ScrollView>
       </View>
     )
@@ -89,6 +71,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
 })
