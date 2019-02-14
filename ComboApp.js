@@ -8,6 +8,11 @@ import ProjectSelect from './components/project/ProjectSelect'
 class ComboApp extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      currentScreen: 0,
+      selectedRestaurant: {},
+      selectedProject: {}
+    }
     switchCurrentScreen = this.switchCurrentScreen.bind(this)
     selectRestaurant = this.selectRestaurant.bind(this)
     selectProject = this.selectProject.bind(this)
@@ -27,12 +32,12 @@ class ComboApp extends Component {
   }
 
   switchCurrentScreen() {
-    if(this.props.currentScreen === 0) this.setState({currentScreen: 1})
-    if(this.props.currentScreen === 1) this.setState({currentScreen: 2})
+    if(this.state.currentScreen === 0) this.setState({currentScreen: 1})
+    if(this.state.currentScreen === 1) this.setState({currentScreen: 2})
   }
 
   render() {
-    const {currentScreen, selectedRestaurant, selectedProject} = this.props
+    const {currentScreen, selectedRestaurant, selectedProject} = this.state
     const switchCurrentScreen = this.switchCurrentScreen
     const selectRestaurant = this.selectRestaurant
     const selectProject = this.selectProject
@@ -49,8 +54,8 @@ class ComboApp extends Component {
     if(currentScreen === 2)
       return(
         <View style={styles.container}>
-          <Text>{this.props.selectedRestaurant.name}</Text>
-          <Text>{this.props.selectedProject.name}</Text>
+          <Text>{this.state.selectedRestaurant.name}</Text>
+          <Text>{this.state.selectedProject.name}</Text>
 
           <View style={{ flexDirection: 'row', width: 200, justifyContent: 'space-around' }}>
             <TouchableOpacity onPress={() => this.props.decreaseCounter()}>
@@ -63,26 +68,21 @@ class ComboApp extends Component {
               <Text style={{ fontSize: 20 }}>Más</Text>
             </TouchableOpacity>
           </View>
+
         </View>)
   }
 }
 
 function mapStateToProps(state) {
     return {
-        counter: state.counter,
-        currentScreen: state.currentScreen,
-        selectedRestaurant: state.selectedRestaurant,
-        selectedProject: state.selectedProject
+        counter: state.counter
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         increaseCounter: () => dispatch({ type: 'INCREASE_COUNTER' }),
-        decreaseCounter: () => dispatch({ type: 'DECREASE_COUNTER' }),
-        switchCurrentScreen: () => dispatch({ type: 'SWITCH_CURRENT_SCREEN' }),
-        selectRestaurant: () => dispatch({ type: 'SELECT_RESTAURANT' }),
-        selectProject: () => dispatch({ type: 'SELECT_PROJECT' })
+        decreaseCounter: () => dispatch({ type: 'DECREASE_COUNTER' })
     }
 }
 

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux'
 import ComboApp from './ComboApp'
 
 const initialState = {
-  counter: 0,
+  counter: 4,
   currentScreen: 0,
   selectedRestaurant: {},
   selectedProject: {}
