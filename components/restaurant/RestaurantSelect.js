@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView, ListView } from 'react-native'
 import { Header, Card, Button, Text } from 'react-native-elements'
+import { connect } from 'react-redux';
 
 import { firebaseApp } from '../../firebase'
 import RestaurantCard from './RestaurantCard'
 
-export default class RestaurantSelect extends React.Component {
+class RestaurantSelect extends React.Component {
   constructor(props) {
     super(props)
 
@@ -41,17 +42,18 @@ export default class RestaurantSelect extends React.Component {
     return(
       <RestaurantCard
         restaurant={restaurant}
-        onSelectRestaurant={this.props.onSelectRestaurant}
-        onSwitchCurrentScreen={this.props.onSwitchCurrentScreen} />
+        onSelectRestaurant={this.props.onSelectRestaurant} />
     )
   }
 
   render() {
+    const { currentScreen } = this.props
 
     return (
       <View style={styles.container}>
         <Header
           centerComponent={{ text: '¿Donde querés comer?', style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
+          rightComponent={{ text: currentScreen.toString() , style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
         />
 
         <ScrollView>
@@ -66,6 +68,14 @@ export default class RestaurantSelect extends React.Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+    return {
+        currentScreen: state.currentScreen
+    }
+}
+
+export default connect(mapStateToProps, null)(RestaurantSelect)
 
 const styles = StyleSheet.create({
   container: {

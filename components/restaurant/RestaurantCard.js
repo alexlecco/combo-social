@@ -1,7 +1,8 @@
 import React from 'react'
 import { Card, Button } from 'react-native-elements'
+import { connect } from 'react-redux';
 
-export default class RestaurantCard extends React.Component {
+class RestaurantCard extends React.Component {
   constructor(props) {
     super(props);
     const restaurant = this.props.restaurant;
@@ -9,7 +10,7 @@ export default class RestaurantCard extends React.Component {
 
   handleSelectRestaurant(restaurant) {
     this.props.onSelectRestaurant(restaurant)
-    this.props.onSwitchCurrentScreen()
+    this.props.switchCurrentScreen()
   }
 
   getImage(id) {
@@ -31,3 +32,11 @@ export default class RestaurantCard extends React.Component {
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        switchCurrentScreen: () => dispatch({ type: 'SWITCH_CURRENT_SCREEN' })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(RestaurantCard)

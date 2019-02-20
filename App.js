@@ -6,7 +6,6 @@ import { Provider } from 'react-redux'
 import ComboApp from './ComboApp'
 
 const initialState = {
-  counter: 4,
   currentScreen: 0,
   selectedRestaurant: {},
   selectedProject: {}
@@ -14,10 +13,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case 'INCREASE_COUNTER':
-      return {counter: state.counter + 1}
-    case 'DECREASE_COUNTER':
-      return {counter: state.counter - 1}
     case 'SWITCH_CURRENT_SCREEN':
       if(state.currentScreen === 0) return {currentScreen: 1}
       if(state.currentScreen === 1) return {currentScreen: 2}

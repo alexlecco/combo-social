@@ -1,7 +1,8 @@
 import React from 'react'
 import { Card, Button } from 'react-native-elements'
+import { connect } from 'react-redux';
 
-export default class ProjectCard extends React.Component {
+class ProjectCard extends React.Component {
   constructor(props) {
     super(props);
     const project = this.props.project;
@@ -9,7 +10,7 @@ export default class ProjectCard extends React.Component {
 
   handleSelectProject(project) {
     this.props.onSelectProject(project)
-    this.props.onSwitchCurrentScreen()
+    this.props.switchCurrentScreen()
   }
 
   getImage(id) {
@@ -23,11 +24,19 @@ export default class ProjectCard extends React.Component {
       <Card title={project.name}
             image={{uri: this.getImage(project.id)}} >
           <Button
-            title='comer aquí'
-            icon={{name: 'thumb-up', color: "white"}}
+            title='apoyar este proyecto'
+            icon={{name: 'favorite', color: "white"}}
             buttonStyle={{borderRadius: 0, marginLeft: -10, marginRight: -10, marginBottom: -10, marginTop: -10}}
             onPress={() => this.handleSelectProject(project)} />
       </Card>
     )
   }
 }
+
+function mapDispatchToProps(dispatch) {
+    return {
+        switchCurrentScreen: () => dispatch({ type: 'SWITCH_CURRENT_SCREEN' })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ProjectCard)

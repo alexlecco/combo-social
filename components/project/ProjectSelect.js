@@ -1,11 +1,12 @@
 import React from 'react'
 import { StyleSheet, View, ScrollView, ListView } from 'react-native'
 import { Header, Card, Button, Text } from 'react-native-elements'
+import { connect } from 'react-redux';
 
 import { firebaseApp } from '../../firebase'
 import ProjectCard from './ProjectCard'
 
-export default class ProjectSelect extends React.Component {
+class ProjectSelect extends React.Component {
   constructor(props) {
     super(props)
 
@@ -41,16 +42,18 @@ export default class ProjectSelect extends React.Component {
     return(
       <ProjectCard
         project={project}
-        onSelectProject={this.props.onSelectProject}
-        onSwitchCurrentScreen={this.props.onSwitchCurrentScreen} />
+        onSelectProject={this.props.onSelectProject} />
     )
   }
 
   render() {
+    const { currentScreen } = this.props
+
     return (
       <View style={styles.container}>
         <Header
-          centerComponent={{ text: '¿En cuál querés ayudar?', style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
+          centerComponent={{ text: '¿Que proyecto querés apoyar?', style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
+          rightComponent={{ text: currentScreen.toString() , style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' } }}
         />
 
         <ScrollView>
@@ -65,6 +68,14 @@ export default class ProjectSelect extends React.Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+    return {
+        currentScreen: state.currentScreen
+    }
+}
+
+export default connect(mapStateToProps, null)(ProjectSelect)
 
 const styles = StyleSheet.create({
   container: {
