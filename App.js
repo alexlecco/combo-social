@@ -1,11 +1,38 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import ComboApp from "./ComboApp";
+
+const initialState = {
+  currentScreen: 0,
+  selectedRestaurant: {},
+  selectedProject: {},
+};
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SWITCH_CURRENT_SCREEN":
+      if (state.currentScreen === 0) return { currentScreen: 1 };
+      if (state.currentScreen === 1) return { currentScreen: 2 };
+    case "SELECT_RESTAURANT":
+      return { selectedRestaurant: state.selectedRestaurant };
+    case "SELECT_PROJECT":
+      return { selectedProject: state.selectedProject };
+  }
+  return state;
+};
+
+const store = createStore(reducer);
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Provider store={store}>
+        <ComboApp />
+      </Provider>
       <StatusBar style="auto" />
     </View>
   );
@@ -14,8 +41,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
