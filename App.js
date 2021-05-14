@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import { createStore } from "redux";
 import { Provider } from "react-redux";
@@ -27,16 +27,14 @@ const reducer = (state = initialState, action) => {
 
 const store = createStore(reducer);
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Provider store={store}>
-        <ComboApp />
-      </Provider>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+const App = () => (
+  <View style={styles.container}>
+    <Provider store={store}>
+      <ComboApp />
+    </Provider>
+    <StatusBar style="auto" />
+  </View>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -46,3 +44,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+export default App;

@@ -1,73 +1,42 @@
-import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  YellowBox,
-  View,
-  TouchableOpacity,
-} from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, } from "react-native";
 import { connect } from "react-redux";
 
 import RestaurantSelect from "./components/restaurant/RestaurantSelect";
 import ProjectSelect from "./components/project/ProjectSelect";
 
-class ComboApp extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      currentScreen: 0,
-      selectedRestaurant: {},
-      selectedProject: {},
-    };
-    selectRestaurant = this.selectRestaurant.bind(this);
-    selectProject = this.selectProject.bind(this);
+const ComboApp = ({ currentScreen }) => {
+  const [selectedRestaurant, setSelectedRestaurant] = useState({})
+  const [selectedProject, setSelectedProject] = useState({})
 
-    console.disableYellowBox = true;
-    console.warn("YellowBox is disabled.");
-    YellowBox.ignoreWarnings(["Warning: ..."]);
-    console.ignoredYellowBox = ["Setting a timer"];
+  function selectRestaurant(restaurant) {
+    setSelectedRestaurant(restaurant);
   }
 
-  selectRestaurant(restaurant) {
-    this.setState({ selectedRestaurant: restaurant });
+  function selectProject(project) {
+    setSelectedProject(project);
   }
 
-  selectProject(project) {
-    this.setState({ selectedProject: project });
-  }
-
-  render() {
-    const { selectedRestaurant, selectedProject } = this.state;
-    const { currentScreen } = this.props;
-
-    const selectRestaurant = this.selectRestaurant;
-    const selectProject = this.selectProject;
-
-    if (currentScreen === 0)
-      return (
-        <RestaurantSelect
-          onSelectRestaurant={this.selectRestaurant.bind(this)}
-          selectedRestaurant={selectedRestaurant}
-        />
-      );
-
-    if (currentScreen === 1)
-      return (
+  return(
+      currentScreen === 0 ? (
+          <RestaurantSelect
+            onSelectRestaurant={selectRestaurant}
+            selectedRestaurant={selectedRestaurant}
+          />
+      ) :
+      currentScreen === 1 ? (
         <ProjectSelect
-          onSelectProject={this.selectProject.bind(this)}
+          onSelectProject={selectProject}
           selectedProject={selectedProject}
         />
-      );
-
-    if (currentScreen === 2)
-      return (
+      ) :
+      currentScreen === 2 &&
         <View style={styles.container}>
-          <Text>{this.state.selectedRestaurant.name}</Text>
-          <Text>{this.state.selectedProject.name}</Text>
-          <Text>{this.props.currentScreen}</Text>
+          <Text>{selectedRestaurant.name}</Text>
+          <Text>{selectedProject.name}</Text>
+          <Text>{currentScreen}</Text>
         </View>
-      );
-  }
+  )
 }
 
 function mapStateToProps(state) {
@@ -77,8 +46,6 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, null)(ComboApp);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -87,3 +54,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+export default connect(mapStateToProps, null)(ComboApp);

@@ -1,27 +1,17 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { StyleSheet, View, ScrollView, FlatList } from "react-native";
-import { Header, Card, Button, Text } from "react-native-elements";
+import { Header } from "react-native-elements";
 import { connect } from "react-redux";
 
 import firebaseApp from "../../firebase";
 import ProjectCard from "./ProjectCard";
 
-class ProjectSelect extends React.Component {
-  constructor(props) {
-    super(props);
+const ProjectSelect = ({ onSelectProject, currentScreen }) => {
+  const [projects, setProjects] = useState([])
+  
+  useEffect(() => {
+    const projectsRef = firebaseApp.database().ref().child("projects");
 
-    this.state = {
-      projects: [],
-    };
-
-    this.projectsRef = firebaseApp.database().ref().child("projects");
-  }
-
-  componentDidMount() {
-    this.listenForProjects(this.projectsRef);
-  }
-
-  listenForProjects(projectsRef) {
     projectsRef.on("value", (snap) => {
       let projects = [];
       snap.forEach((child) => {
@@ -32,48 +22,40 @@ class ProjectSelect extends React.Component {
           _key: child.key,
         });
       });
-      this.setState({
-        projects: projects,
-      });
+      setProjects(projects)
     });
-  }
+  }, [])
 
-  buildProject(project) {
-    return (
-      <ProjectCard
-        project={project}
-        onSelectProject={this.props.onSelectProject}
+  const buildProject = (project) =>(
+    <ProjectCard
+      project={project}
+      onSelectProject={onSelectProject}
+    />
+  );
+
+  return (
+    <View style={styles.container}>
+      <Header
+        centerComponent={{
+          text: "¿Que proyecto querés apoyar?",
+          style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
+        }}
+        rightComponent={{
+          text: currentScreen.toString(),
+          style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
+        }}
       />
-    );
-  }
 
-  render() {
-    const { currentScreen } = this.props;
-
-    return (
-      <View style={styles.container}>
-        <Header
-          centerComponent={{
-            text: "¿Que proyecto querés apoyar?",
-            style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
-          }}
-          rightComponent={{
-            text: currentScreen.toString(),
-            style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
-          }}
-        />
-
-        <ScrollView>
-          <View style={{ paddingBottom: 15 }}>
-            <FlatList
-              data={this.state.projects}
-              renderItem={(project) => this.buildProject(project)}
-            />
-          </View>
-        </ScrollView>
-      </View>
-    );
-  }
+      <ScrollView>
+        <View style={{ paddingBottom: 15 }}>
+          <FlatList
+            data={projects}
+            renderItem={(project) => buildProject(project)}
+          />
+        </View>
+      </ScrollView>
+    </View>
+  );
 }
 
 function mapStateToProps(state) {
