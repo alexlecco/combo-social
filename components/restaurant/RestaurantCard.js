@@ -22,21 +22,20 @@ class RestaurantCard extends React.Component {
 
     return (
       <Card>
-        <Card.Title>{restaurant.name}</Card.Title>
-        <Card.Image source={{ uri: this.getImage(restaurant.item.id) }}>
-          <Button
-            title="comer aquí"
-            icon={{ name: "thumb-up", color: "white" }}
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: -10,
-              marginRight: -10,
-              marginBottom: -10,
-              marginTop: -10,
-            }}
-            onPress={() => this.handleSelectRestaurant(restaurant)}
-          />
-        </Card.Image>
+        <Card.Title>{restaurant.item.name}</Card.Title>
+        <Card.Image source={{ uri: this.getImage(restaurant.item.id) }} />
+        <Button
+          title="comer aquí"
+          icon={{ name: "thumb-up", color: "white" }}
+          buttonStyle={{
+            marginLeft: -10,
+            marginRight: -10,
+            marginBottom: -10,
+            marginTop: -10,
+            padding: 20,
+          }}
+          onPress={() => this.handleSelectRestaurant(restaurant)}
+        />
       </Card>
     );
   }

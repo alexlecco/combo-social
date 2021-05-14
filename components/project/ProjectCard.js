@@ -22,21 +22,20 @@ class ProjectCard extends React.Component {
 
     return (
       <Card>
-        <Card.Title>{project.name}</Card.Title>
-        <Card.Image source={{ uri: this.getImage(project.item.id) }}>
-          <Button
-            title="apoyar este proyecto"
-            icon={{ name: "favorite", color: "white" }}
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: -10,
-              marginRight: -10,
-              marginBottom: -10,
-              marginTop: -10,
-            }}
-            onPress={() => this.handleSelectProject(project)}
-          />
-        </Card.Image>
+        <Card.Title>{project.item.name}</Card.Title>
+        <Card.Image source={{ uri: this.getImage(project.item.id) }} />
+        <Button
+          title="apoyar este proyecto"
+          icon={{ name: "favorite", color: "white" }}
+          buttonStyle={{
+            marginLeft: -10,
+            marginRight: -10,
+            marginBottom: -10,
+            marginTop: -10,
+            padding: 20,
+          }}
+          onPress={() => this.handleSelectProject(project)}
+        />
       </Card>
     );
   }
