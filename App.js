@@ -36,6 +36,8 @@ const App = () => (
   </View>
 );
 
+export default App;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -44,5 +46,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-export default App;

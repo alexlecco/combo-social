@@ -5,9 +5,11 @@ import { connect } from "react-redux";
 
 import firebaseApp from "../../firebase";
 import RestaurantCard from "./RestaurantCard";
+import RNEconstants from '../../constants/RNEconstants';
 
 const RestaurantSelect = ({ onSelectRestaurant, currentScreen }) => {
-  const [restaurants, setRestaurants] = useState([])
+  const [restaurants, setRestaurants] = useState([]);
+  const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
   
   useEffect(() => {
     const restaurantsRef = firebaseApp.database().ref().child("restaurants");
@@ -37,14 +39,8 @@ const RestaurantSelect = ({ onSelectRestaurant, currentScreen }) => {
   return(
     <View style={styles.container}>
       <Header
-        centerComponent={{
-          text: "¿Donde querés comer?",
-          style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
-        }}
-        rightComponent={{
-          text: currentScreen.toString(),
-          style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
-        }}
+        centerComponent={centerComponent}
+        rightComponent={{text: currentScreen.toString()}}
       />
 
       <ScrollView>
@@ -73,5 +69,4 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     justifyContent: "center",
   },
-  
 });

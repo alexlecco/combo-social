@@ -46,6 +46,8 @@ function mapStateToProps(state) {
   };
 }
 
+export default connect(mapStateToProps, null)(ComboApp);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -54,5 +56,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-export default connect(mapStateToProps, null)(ComboApp);

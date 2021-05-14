@@ -5,10 +5,12 @@ import { connect } from "react-redux";
 
 import firebaseApp from "../../firebase";
 import ProjectCard from "./ProjectCard";
+import RNEconstants from '../../constants/RNEconstants';
 
 const ProjectSelect = ({ onSelectProject, currentScreen }) => {
   const [projects, setProjects] = useState([])
-  
+  const centerComponent = RNEconstants.projectSelect?.centerComponent;
+
   useEffect(() => {
     const projectsRef = firebaseApp.database().ref().child("projects");
 
@@ -33,17 +35,15 @@ const ProjectSelect = ({ onSelectProject, currentScreen }) => {
     />
   );
 
+  const rneData = {
+
+  }
+
   return (
     <View style={styles.container}>
       <Header
-        centerComponent={{
-          text: "¿Que proyecto querés apoyar?",
-          style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
-        }}
-        rightComponent={{
-          text: currentScreen.toString(),
-          style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
-        }}
+        centerComponent={centerComponent}
+        rightComponent={{text: currentScreen.toString()}}
       />
 
       <ScrollView>
