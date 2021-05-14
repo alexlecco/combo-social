@@ -1,34 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, } from "react-native";
-import { connect } from "react-redux";
+import { AppContext } from './context/provider'
 
 import RestaurantSelect from "./components/restaurant/RestaurantSelect";
 import ProjectSelect from "./components/project/ProjectSelect";
 
-const ComboApp = ({ currentScreen }) => {
-  const [selectedRestaurant, setSelectedRestaurant] = useState({})
-  const [selectedProject, setSelectedProject] = useState({})
-
-  function selectRestaurant(restaurant) {
-    setSelectedRestaurant(restaurant);
-  }
-
-  function selectProject(project) {
-    setSelectedProject(project);
-  }
+const ComboApp = _ => {
+  const [state] = useContext(AppContext);
+  const { currentScreen, selectedRestaurant, selectedProject } = state;
 
   return(
       currentScreen === 0 ? (
-          <RestaurantSelect
-            onSelectRestaurant={selectRestaurant}
-            selectedRestaurant={selectedRestaurant}
-          />
+        <RestaurantSelect />
       ) :
       currentScreen === 1 ? (
-        <ProjectSelect
-          onSelectProject={selectProject}
-          selectedProject={selectedProject}
-        />
+        <ProjectSelect />
       ) :
       currentScreen === 2 &&
         <View style={styles.container}>
@@ -39,14 +25,7 @@ const ComboApp = ({ currentScreen }) => {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    counter: state.counter,
-    currentScreen: state.currentScreen,
-  };
-}
-
-export default connect(mapStateToProps, null)(ComboApp);
+export default ComboApp;
 
 const styles = StyleSheet.create({
   container: {

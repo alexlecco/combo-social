@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Card, Button } from "react-native-elements";
-import { connect } from "react-redux";
 import RNEconstants from '../../constants/RNEconstants';
+import { AppContext } from '../../context/provider'
 
-const RestaurantCard = ({ restaurant, onSelectRestaurant, switchCurrentScreen }) => {
+const RestaurantCard = ({ restaurant }) => {
+  const [state, setState] = useContext(AppContext)
+
   const buttonStyle = RNEconstants.restaurantCard?.buttonStyle
 
   function handleSelectRestaurant(restaurant) {
-    onSelectRestaurant(restaurant);
-    switchCurrentScreen();
+    setState({
+      ...state,
+      currentScreen: state.currentScreen + 1,
+      selectedRestaurant: restaurant.item,
+    })
   }
 
   const getImage = (id) => (
     `https://firebasestorage.googleapis.com/v0/b/combo-social.appspot.com/o/restaurants%2F${id}.png?alt=media&token=b4b17bce-85c9-42df-9555-d484d99c4c3b`
   )
-
-  const rneData = {
-
-  }
 
   return(
     <Card>
@@ -33,10 +34,4 @@ const RestaurantCard = ({ restaurant, onSelectRestaurant, switchCurrentScreen })
   )
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    switchCurrentScreen: () => dispatch({ type: "SWITCH_CURRENT_SCREEN" }),
-  };
-}
-
-export default connect(null, mapDispatchToProps)(RestaurantCard);
+export default RestaurantCard;

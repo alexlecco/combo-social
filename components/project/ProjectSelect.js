@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { StyleSheet, View, ScrollView, FlatList } from "react-native";
 import { Header } from "react-native-elements";
-import { connect } from "react-redux";
 
+import { AppContext } from '../../context/provider'
 import firebaseApp from "../../firebase";
 import ProjectCard from "./ProjectCard";
 import RNEconstants from '../../constants/RNEconstants';
 
-const ProjectSelect = ({ onSelectProject, currentScreen }) => {
+const ProjectSelect = _ => {
+  const [state] = useContext(AppContext);
+  const { currentScreen } = state;
   const [projects, setProjects] = useState([])
   const centerComponent = RNEconstants.projectSelect?.centerComponent;
 
@@ -29,15 +31,8 @@ const ProjectSelect = ({ onSelectProject, currentScreen }) => {
   }, [])
 
   const buildProject = (project) =>(
-    <ProjectCard
-      project={project}
-      onSelectProject={onSelectProject}
-    />
+    <ProjectCard project={project} />
   );
-
-  const rneData = {
-
-  }
 
   return (
     <View style={styles.container}>
@@ -58,13 +53,7 @@ const ProjectSelect = ({ onSelectProject, currentScreen }) => {
   );
 }
 
-function mapStateToProps(state) {
-  return {
-    currentScreen: state.currentScreen,
-  };
-}
-
-export default connect(mapStateToProps, null)(ProjectSelect);
+export default ProjectSelect;
 
 const styles = StyleSheet.create({
   container: {

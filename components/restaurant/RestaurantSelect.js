@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
 import { StyleSheet, View, ScrollView, FlatList } from "react-native";
 import { Header } from "react-native-elements";
-import { connect } from "react-redux";
 
+import { AppContext } from '../../context/provider'
 import firebaseApp from "../../firebase";
 import RestaurantCard from "./RestaurantCard";
 import RNEconstants from '../../constants/RNEconstants';
 
-const RestaurantSelect = ({ onSelectRestaurant, currentScreen }) => {
+const RestaurantSelect = _ => {
+  const [state] = useContext(AppContext);
+  const { currentScreen } = state;
   const [restaurants, setRestaurants] = useState([]);
   const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
   
@@ -30,10 +32,7 @@ const RestaurantSelect = ({ onSelectRestaurant, currentScreen }) => {
   }, [])
 
   const buildRestaurant = (restaurant) => (
-    <RestaurantCard
-      restaurant={restaurant}
-      onSelectRestaurant={onSelectRestaurant}
-    />
+    <RestaurantCard restaurant={restaurant} />
   );
 
   return(
@@ -55,13 +54,7 @@ const RestaurantSelect = ({ onSelectRestaurant, currentScreen }) => {
   )
 }
 
-function mapStateToProps(state) {
-  return {
-    currentScreen: state.currentScreen,
-  };
-}
-
-export default connect(mapStateToProps, null)(RestaurantSelect);
+export default RestaurantSelect;
 
 const styles = StyleSheet.create({
   container: {
