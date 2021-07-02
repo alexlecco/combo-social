@@ -4,10 +4,11 @@ import { AppContext } from './context/provider'
 
 import RestaurantSelect from "./components/restaurant/RestaurantSelect";
 import ProjectSelect from "./components/project/ProjectSelect";
+import ComboSelect from "./components/combo/ComboSelect";
 
 const ComboApp = _ => {
   const [state] = useContext(AppContext);
-  const { currentScreen, selectedRestaurant, selectedProject } = state;
+  const { currentScreen, selectedRestaurant, selectedProject, selectedCombo } = state;
 
   return(
       currentScreen === 0 ? (
@@ -16,10 +17,14 @@ const ComboApp = _ => {
       currentScreen === 1 ? (
         <ProjectSelect />
       ) :
-      currentScreen === 2 &&
+      currentScreen === 2 ? (
+        <ComboSelect />
+      ) :
+      currentScreen === 3 &&
         <View style={styles.container}>
           <Text>{selectedRestaurant.name}</Text>
           <Text>{selectedProject.name}</Text>
+          <Text>{selectedCombo.name}</Text>
           <Text>{currentScreen}</Text>
         </View>
   )

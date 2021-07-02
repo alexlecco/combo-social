@@ -4,14 +4,15 @@ const initialState = {
   currentScreen: 0,
   selectedRestaurant: {},
   selectedProject: {},
+  selectedCombo: {},
 };
 
-const ContextProvider = props => {
+const ContextProvider = ({children}) => {
   const [state, setState] = useState(initialState);
 
   return (
     <AppContext.Provider value={[state, setState]}>
-      {props.children}
+      {children}
     </AppContext.Provider>
   )
 }
