@@ -1,14 +1,15 @@
 import React, { useContext } from "react";
-import { StyleSheet, Text, View, } from "react-native";
+import { StyleSheet } from "react-native";
 import { AppContext } from './context/provider'
 
 import RestaurantSelect from "./components/restaurant/RestaurantSelect";
 import ProjectSelect from "./components/project/ProjectSelect";
 import ComboSelect from "./components/combo/ComboSelect";
+import ConfirmOrder from "./components/order/ConfirmOrder";
 
 const ComboApp = _ => {
   const [state] = useContext(AppContext);
-  const { currentScreen, selectedRestaurant, selectedProject, selectedCombo } = state;
+  const { currentScreen } = state;
 
   return(
       currentScreen === 0 ? (
@@ -21,12 +22,7 @@ const ComboApp = _ => {
         <ComboSelect />
       ) :
       currentScreen === 3 &&
-        <View style={styles.container}>
-          <Text>{selectedRestaurant.name}</Text>
-          <Text>{selectedProject.name}</Text>
-          <Text>{selectedCombo.name}</Text>
-          <Text>{currentScreen}</Text>
-        </View>
+        <ConfirmOrder />
   )
 }
 
