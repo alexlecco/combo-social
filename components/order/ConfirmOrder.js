@@ -8,11 +8,14 @@ const ConfirmOrder = () => {
 
   return (
     <View style={styles.container}>
-      <Text>¡Confirmá tu pedido!</Text>
-      <Text>{selectedRestaurant.name}</Text>
-      <Text>{selectedProject.name}</Text>
-      <Text>{selectedCombo.name}</Text>
-      <Text>{currentScreen}</Text>
+      <View style={styles.title}>
+        <Text>¡Confirmá tu pedido!</Text>
+      </View>
+      <View style={styles.cards}>
+        <Text style={styles.cardInfo}>{selectedRestaurant.name}</Text>
+        <Text style={styles.cardInfo}>{selectedProject.name}</Text>
+        <Text style={styles.cardInfo}>{selectedCombo.name}</Text>
+      </View>
       <View style={styles.buttons}>
         <Button title="Cancelar" />
         <Button title="Confirmar" />
@@ -25,13 +28,35 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-    justifyContent: "center",
+  },
+  title: {
+    flex: 1,
+    backgroundColor: "red",
     alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  cards: {
+    flex: 4,
+    backgroundColor: "darkorange",
   },
   buttons: {
+    flex: 1,
     flexDirection: "row",
-  }
+    backgroundColor: "green",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+  },
+  cardInfo: {
+    flex: 1,
+    alignItems: "center",
+    textAlign: "center",
+    backgroundColor: "blue",
+    color: "white",
+    padding: 10,
+    margin: 5,
+  },
 });
-
 
 export default ConfirmOrder
