@@ -53,8 +53,6 @@ const ComboSelect = _ => {
   );
 }
 
-export default ComboSelect;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -62,3 +60,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default ComboSelect;
