@@ -1,10 +1,10 @@
-import React, {useState, useEffect, useContext} from "react";
-import { StyleSheet, View, ScrollView, FlatList } from "react-native";
-import { Header } from "react-native-elements";
+import React, {useState, useEffect, useContext} from 'react';
+import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
+import { Header } from 'react-native-elements';
 
 import { AppContext } from '../../context/provider'
-import firebaseApp from "../../firebase";
-import ProjectCard from "./ProjectCard";
+import firebaseApp from '../../firebase';
+import ProjectCard from './ProjectCard';
 import RNEconstants from '../../constants/RNEconstants';
 
 const ProjectSelect = _ => {
@@ -14,9 +14,9 @@ const ProjectSelect = _ => {
   const centerComponent = RNEconstants.projectSelect?.centerComponent;
 
   useEffect(() => {
-    const projectsRef = firebaseApp.database().ref().child("projects");
+    const projectsRef = firebaseApp.database().ref().child('projects');
 
-    projectsRef.on("value", (snap) => {
+    projectsRef.on('value', (snap) => {
       let projects = [];
       snap.forEach((child) => {
         projects.push({
@@ -58,7 +58,7 @@ export default ProjectSelect;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
-    justifyContent: "center",
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
   },
 });

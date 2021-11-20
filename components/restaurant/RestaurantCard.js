@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Card, Button } from "react-native-elements";
+import React, { useContext } from 'react';
+import { Card, Button } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import { AppContext } from '../../context/provider'
 
@@ -25,8 +25,8 @@ const RestaurantCard = ({ restaurant }) => {
       <Card.Title>{restaurant.item.name}</Card.Title>
       <Card.Image source={{ uri: getImage(restaurant.item.id) }} />
       <Button
-        title="comer aquí"
-        icon={{ name: "thumb-up", color: "white" }}
+        title='comer aquí'
+        icon={{ name: 'thumb-up', color: 'white' }}
         buttonStyle={buttonStyle}
         onPress={() => handleSelectRestaurant(restaurant)}
       />

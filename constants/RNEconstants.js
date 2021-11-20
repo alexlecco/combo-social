@@ -9,11 +9,11 @@ const cardStyle = {
 const RNEconstants = {
   restaurantSelect: {
     centerComponent: {
-      text: "¿Donde querés comer?",
-      style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
+      text: '¿Donde querés comer?',
+      style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' },
     },
     rightComponent: {
-      style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
+      style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' },
     }
   },
   restaurantCard: {
@@ -21,15 +21,20 @@ const RNEconstants = {
   },
   projectSelect: {
     centerComponent: {
-      text: "¿Que proyecto querés apoyar?",
-      style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
+      text: '¿Que proyecto querés apoyar?',
+      style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' },
     },
     rightComponent: {
-      style: { color: "#ffffff", fontSize: 17, fontWeight: "bold" },
+      style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' },
     }
   },
   projectCard: {
     buttonStyle: cardStyle
+  },
+  ConfirmOrder: {
+    centerComponent: {
+      text: 'Confirmá tu pedido'
+    }
   }
 }
 

@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Card, Button } from "react-native-elements";
+import React, { useContext } from 'react';
+import { Card, Button } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import { AppContext } from '../../context/provider'
 
@@ -25,8 +25,8 @@ const ProjectCard = ({ project }) => {
       <Card.Title>{project.item.name}</Card.Title>
       <Card.Image source={{ uri: getImage(project.item.id) }} />
       <Button
-        title="apoyar este proyecto"
-        icon={{ name: "favorite", color: "white" }}
+        title='apoyar este proyecto'
+        icon={{ name: 'favorite', color: 'white' }}
         buttonStyle={buttonStyle}
         onPress={() => handleSelectProject(project)}
       />

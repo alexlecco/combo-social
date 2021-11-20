@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Card, Button } from "react-native-elements";
+import React, { useContext } from 'react';
+import { Card, Button } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import { AppContext } from '../../context/provider'
 
@@ -25,8 +25,8 @@ const ComboCard = ({ combo }) => {
       <Card.Title>{combo.item.name}</Card.Title>
       <Card.Image source={{ uri: getImage(combo.item.id) }} />
       <Button
-        title="elegir este combo"
-        icon={{ name: "food", color: "white" }}
+        title='elegir este combo'
+        icon={{ name: 'food', color: 'white' }}
         buttonStyle={buttonStyle}
         onPress={() => handleSelectCombo(combo)}
       />
