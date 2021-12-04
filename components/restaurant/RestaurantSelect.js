@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from 'react';
 import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
 import { Header } from 'react-native-elements';
 
-import { AppContext } from '../../context/provider'
+import { AppContext } from '../../context/provider';
 import firebaseApp from '../../firebase';
 import RestaurantCard from './RestaurantCard';
 import RNEconstants from '../../constants/RNEconstants';
@@ -28,8 +28,7 @@ const RestaurantSelect = _ => {
       });
       setRestaurants(restaurants)
     });
-    
-  }, [])
+  }, []);
 
   const buildRestaurant = (restaurant) => (
     <RestaurantCard restaurant={restaurant} />
@@ -52,7 +51,7 @@ const RestaurantSelect = _ => {
       </ScrollView>
     </View> 
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {

@@ -12,4 +12,4 @@ firebase.initializeApp(config);
 
 const firebaseApp = firebase;
 
-export default firebaseApp
+export default firebaseApp;

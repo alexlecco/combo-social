@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 import { AppContext } from './context/provider'
 
-import Main from "./screens/Main";
-import RestaurantSelect from "./components/restaurant/RestaurantSelect";
-import ProjectSelect from "./components/project/ProjectSelect";
-import ComboSelect from "./components/combo/ComboSelect";
-import ConfirmOrder from "./components/order/ConfirmOrder";
+import Main from './screens/Main';
+import RestaurantSelect from './components/restaurant/RestaurantSelect';
+import ProjectSelect from './components/project/ProjectSelect';
+import ComboSelect from './components/combo/ComboSelect';
+import ConfirmOrder from './components/order/ConfirmOrder';
 
 const ComboApp = _ => {
   const [state] = useContext(AppContext);
