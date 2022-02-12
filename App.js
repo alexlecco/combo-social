@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, LogBox } from 'react-native';
 
 import ContextProvider from './context/provider';
 import ComboApp from './ComboApp';
 
 
 const App = _ => {
+  useEffect(() => {
+    // Ignore log notification by message:
+    LogBox.ignoreLogs(['Warning: ...']);
+  
+    // Ignore all log notifications:
+    LogBox.ignoreAllLogs();
+  })
 
   return(
     <SafeAreaProvider>

@@ -4,6 +4,7 @@ import { AppContext } from '../../context/provider'
 import { Header } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import DetailCard from './DetailCard';
+import firebaseApp from '../../firebase';
 
 const ConfirmOrder = () => {
   const [state, setState] = useContext(AppContext);
@@ -17,6 +18,20 @@ const ConfirmOrder = () => {
     selectedProject: {},
     selectedCombo: {},
   });
+
+  const saveOrder = _ => {
+    firebaseApp.database().ref().child('orders').push({
+      selectedRestaurant: state.selectedRestaurant,
+      selectedProject: state.selectedProject,
+      selectedCombo: state.selectedCombo,
+      status: 'pendent',
+    }).key;
+  };
+
+  const onConfirmOrder = _ => {
+    saveOrder();
+    restartProcess();
+  };
 
   return (
     <View style={styles.container}>
@@ -34,7 +49,7 @@ const ConfirmOrder = () => {
       </View>
       <View style={styles.buttons}>
         <Button title='Cancelar' onPress={restartProcess} />
-        <Button title='Confirmar' />
+        <Button title='Confirmar' onPress={onConfirmOrder} />
       </View>
     </View>
   );
