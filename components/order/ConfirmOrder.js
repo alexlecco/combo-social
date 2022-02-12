@@ -21,6 +21,11 @@ const ConfirmOrder = () => {
     selectedCombo: {},
   });
 
+  const redirectTo = (screenToRedirect) => setState({
+    ...state,
+    currentScreen: screenToRedirect,
+  });
+
   const saveOrder = _ => {
     push(ref(database, 'orders/'), {
       selectedRestaurant: state.selectedRestaurant.id,
@@ -32,7 +37,7 @@ const ConfirmOrder = () => {
 
   const onConfirmOrder = _ => {
     saveOrder();
-    restartProcess();
+    redirectTo(4);
   };
 
   return (

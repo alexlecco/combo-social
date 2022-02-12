@@ -10,9 +10,7 @@ const ProjectCard = ({ text, type, id }) => {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={{
-          uri: getImage(),
-        }}
+        source={{ uri: getImage() }}
       />
       <View style={styles.textContainer}>
         <Text style={styles.text}>{text}</Text>

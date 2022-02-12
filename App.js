@@ -6,7 +6,6 @@ import { StyleSheet, View, LogBox } from 'react-native';
 import ContextProvider from './context/provider';
 import ComboApp from './ComboApp';
 
-
 const App = _ => {
   useEffect(() => {
     // Ignore log notification by message:
@@ -31,7 +30,6 @@ const App = _ => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'grey',
     alignItems: 'stretch',
     justifyContent: 'center',
   },
