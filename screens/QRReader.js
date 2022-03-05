@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner, } from 'expo-barcode-scanner';
-import { AppContext } from '../src/context/provider';
+import { AppContext, initialState } from '../src/context/provider';
 
 const QRReader = _ => {
   const [state, setState] = useContext(AppContext);
@@ -18,6 +18,7 @@ const QRReader = _ => {
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
     alert(`Codigo de tipo: ${type} y datos: ${data} fueron escaneddos!`);
+    // alert('Orden aprobada con éxito. Ya fue enviada a la cocina.');
   }
 
   if (hasPermission === null) (<Text> Solicitando permiso para la cámara </Text>);
@@ -41,7 +42,7 @@ const QRReader = _ => {
         } 
         <Button
           title={'Volver a la pantalla principal'}
-          onPress={() => setState({...state, currentScreen: 0})}
+          onPress={() => setState(initialState)}
         />
       </View>
     </View>

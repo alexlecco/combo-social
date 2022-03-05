@@ -12,6 +12,7 @@ import QRReader from '../../screens/QRReader';
 const ComboApp = _ => {
   const [state] = useContext(AppContext);
   const { currentScreen } = state;
+  console.log("🚀 ~ file: ComboApp.js ~ line 15 ~ state", state)
 
   if (currentScreen === 0) return <RestaurantSelect />
   if (currentScreen === 1) return <ProjectSelect />
@@ -20,7 +21,7 @@ const ComboApp = _ => {
   if (currentScreen === 4) return <CodeValidation />
   if (currentScreen === 9) return <QRReader />
 
-  return <Main />
+  return <RestaurantSelect />
 }
 
 export default ComboApp;
