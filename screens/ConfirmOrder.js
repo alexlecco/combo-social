@@ -1,12 +1,12 @@
 import React, { useContext } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { AppContext } from '../../context/provider'
+import { AppContext } from '../src/context/provider'
 import { Header } from 'react-native-elements';
 import { ref, push } from "firebase/database";
 
-import RNEconstants from '../../constants/RNEconstants';
-import DetailCard from './DetailCard';
-import database from '../../firebase';
+import RNEconstants from '../src/constants/RNEconstants';
+import DetailCard from '../src/components/order/DetailCard';
+import database from '../firebase';
 
 const ConfirmOrder = () => {
   const [state, setState] = useContext(AppContext);

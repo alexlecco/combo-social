@@ -3,10 +3,10 @@ import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
 import { Header } from 'react-native-elements';
 import { ref, onValue } from 'firebase/database';
 
-import { AppContext } from '../../context/provider'
-import database from '../../firebase';
-import ComboCard from './ComboCard';
-import RNEconstants from '../../constants/RNEconstants';
+import { AppContext } from '../src/context/provider'
+import database from '../firebase';
+import ComboCard from '../src/components/combo/ComboCard';
+import RNEconstants from '../src/constants/RNEconstants';
 
 const ComboSelect = _ => {
   const [state] = useContext(AppContext);

@@ -3,8 +3,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, LogBox } from 'react-native';
 
-import ContextProvider from './context/provider';
-import ComboApp from './ComboApp';
+import ContextProvider from './src/context/provider';
+import ComboApp from './src/components/ComboApp';
 
 const App = _ => {
   useEffect(() => {

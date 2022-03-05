@@ -1,0 +1,70 @@
+{
+  "combos" : {
+    "comb01" : {
+      "name" : "2 Sandwiches de milanesa + gaseosa de 1L",
+      "price" : 550,
+      "restaurantId" : "rest01"
+    },
+    "comb02" : {
+      "name" : "Pizza especial + cerveza de 1L",
+      "price" : 500,
+      "restaurantId" : "rest01"
+    },
+    "comb03" : {
+      "name" : "6 empanadas + gaseosa de 1L",
+      "price" : 450,
+      "restaurantId" : "rest01"
+    }
+  },
+  "employees" : {
+    "empl01" : {
+      "name" : "Gonzalo Gonzalez",
+      "restaurant-id" : "rest01"
+    }
+  },
+  "projects" : {
+    "proj01" : {
+      "description" : "Zombie ipsum brains reversus ab cerebellum viral inferno, brein nam rick mend grimes malum cerveau cerebro. De carne cerebro lumbering animata cervello corpora quaeritis. Summus thalamus brains sit​​, morbo basal ganglia vel maleficia? De braaaiiiins apocalypsi gorger omero prefrontal cortex undead survivor fornix dictum mauris.",
+      "id" : "proj01",
+      "name" : "Taller de computación Don Bosco"
+    },
+    "proj02" : {
+      "description" : "Zombie ipsum brains reversus ab cerebellum viral inferno, brein nam rick mend grimes malum cerveau cerebro. De carne cerebro lumbering animata cervello corpora quaeritis. Summus thalamus brains sit​​, morbo basal ganglia vel maleficia? De braaaiiiins apocalypsi gorger omero prefrontal cortex undead survivor fornix dictum mauris.",
+      "id" : "proj02",
+      "name" : "Una sonrisa para Lucia"
+    },
+    "proj03" : {
+      "description" : "Zombie ipsum brains reversus ab cerebellum viral inferno, brein nam rick mend grimes malum cerveau cerebro. De carne cerebro lumbering animata cervello corpora quaeritis. Summus thalamus brains sit​​, morbo basal ganglia vel maleficia? De braaaiiiins apocalypsi gorger omero prefrontal cortex undead survivor fornix dictum mauris.",
+      "id" : "proj03",
+      "name" : "Iluciones sobre ruedas"
+    }
+  },
+  "restaurants" : {
+    "rest01" : {
+      "address" : "Rivadavia 799",
+      "id" : "rest01",
+      "name" : "Tutti"
+    },
+    "rest02" : {
+      "address" : "24 de Septiembre 545",
+      "id" : "rest02",
+      "name" : "La pizzada"
+    },
+    "rest03" : {
+      "address" : "Suipacha 901",
+      "id" : "rest03",
+      "name" : "A mi nooo"
+    },
+    "rest04" : {
+      "address" : "Chacabuco 77",
+      "id" : "rest04",
+      "name" : "Cocina abierta del Buró"
+    }
+  },
+  "users" : {
+    "user01" : {
+      "id" : "user01",
+      "username" : "alexlecco"
+    }
+  }
+}

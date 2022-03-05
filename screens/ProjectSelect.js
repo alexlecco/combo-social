@@ -3,10 +3,10 @@ import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
 import { Header } from 'react-native-elements';
 import { ref, onValue } from 'firebase/database';
 
-import { AppContext } from '../../context/provider'
-import database from '../../firebase';
-import ProjectCard from './ProjectCard';
-import RNEconstants from '../../constants/RNEconstants';
+import { AppContext } from '../src/context/provider'
+import database from '../firebase';
+import ProjectCard from '../src/components/project/ProjectCard';
+import RNEconstants from '../src/constants/RNEconstants';
 
 const ProjectSelect = _ => {
   const [state] = useContext(AppContext);

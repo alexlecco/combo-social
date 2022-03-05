@@ -3,10 +3,10 @@ import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
 import { Header } from 'react-native-elements';
 import { ref, onValue } from 'firebase/database';
 
-import { AppContext } from '../../context/provider';
-import database from '../../firebase';
-import RestaurantCard from './RestaurantCard';
-import RNEconstants from '../../constants/RNEconstants';
+import { AppContext } from '../src/context/provider';
+import database from '../firebase';
+import RestaurantCard from '../src/components/restaurant/RestaurantCard';
+import RNEconstants from '../src/constants/RNEconstants';
 
 const RestaurantSelect = _ => {
   const [state] = useContext(AppContext);

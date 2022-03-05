@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
-import { AppContext } from '../context/provider'
+import { AppContext } from '../src/context/provider'
 
 const CodeValidation = _ => {
   const [state, setState] = useContext(AppContext);
