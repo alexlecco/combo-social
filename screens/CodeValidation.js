@@ -1,13 +1,33 @@
-import React, { useContext } from 'react';
-import { View, Text, StyleSheet, Image, Button } from 'react-native';
+import React, { useState, useContext, useEffect, } from 'react';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import SvgQRCode from 'react-native-qrcode-svg';
 import { AppContext, initialState } from '../src/context/provider'
+import { ref, onValue, getDatabase, } from 'firebase/database';
 
 const CodeValidation = _ => {
   const [state, setState] = useContext(AppContext);
   const { orderKey } = state;
-
+  const [status, setStatus] = useState();
   const docRef = `https://combo-social.firebaseio.com/orders/${orderKey}`;
+
+  useEffect(() => {
+    if (status === 'accepted') {
+      setState({
+        ...state,
+        currentScreen: state.currentScreen + 1,
+      })
+    }
+  }, [status])
+
+  useEffect(() => {
+    const db = getDatabase();
+    const reference = ref(db, 'orders/' + orderKey);
+    onValue(reference, snap => {
+      const status = snap.val().status;
+      setStatus(status);
+    });
+  }, []);
+
   const onReturnMainScreen = _ => setState(initialState);
 
   return (

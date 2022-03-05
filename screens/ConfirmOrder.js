@@ -15,10 +15,10 @@ const ConfirmOrder = () => {
 
   const restartProcess = _ => setState(initialState);
 
-  const saveOrderKeyAndRedirectTo = (mynumber, screenToRedirect) => setState({
+  const saveOrderKeyAndRedirectTo = (orderKey, screenToRedirect) => setState({
     ...state,
     currentScreen: screenToRedirect,
-    orderKey: mynumber,
+    orderKey: orderKey,
   });
 
   const onConfirmOrder = _ => {
