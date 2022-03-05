@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
-import { Header } from 'react-native-elements';
+import { Header, Button, } from 'react-native-elements';
 import { ref, onValue } from 'firebase/database';
 
 import { AppContext } from '../src/context/provider';
@@ -9,10 +9,22 @@ import RestaurantCard from '../src/components/restaurant/RestaurantCard';
 import RNEconstants from '../src/constants/RNEconstants';
 
 const RestaurantSelect = _ => {
-  const [state] = useContext(AppContext);
+  const [state, setState] = useContext(AppContext);
   const { currentScreen } = state;
   const [restaurants, setRestaurants] = useState([]);
   const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
+  const qrScanButton = (
+    <Button
+      title='scan'
+      onPress={() => handleQrScanButton()}
+    />
+  );
+  const handleQrScanButton = () => {
+    setState({
+      ...state,
+      currentScreen: 9,
+    })
+  }
   
   useEffect(() => {
     const restaurantsRef = ref(database, 'restaurants/');
@@ -38,6 +50,7 @@ const RestaurantSelect = _ => {
   return(
     <View style={styles.container}>
       <Header
+        leftComponent={qrScanButton}
         centerComponent={centerComponent}
         rightComponent={{text: currentScreen.toString()}}
       />

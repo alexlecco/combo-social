@@ -8,7 +8,7 @@ const RestaurantCard = ({ restaurant }) => {
 
   const buttonStyle = RNEconstants.restaurantCard?.buttonStyle
 
-  function handleSelectRestaurant(restaurant) {
+  const handleSelectRestaurant = (restaurant) => {
     setState({
       ...state,
       currentScreen: state.currentScreen + 1,

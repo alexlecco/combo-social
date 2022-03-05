@@ -1,7 +1,7 @@
 import React, { useState, createContext } from 'react';
 
 const initialState = {
-  currentScreen: 1,
+  currentScreen: 0,
   selectedRestaurant: {},
   selectedProject: {},
   selectedCombo: {},

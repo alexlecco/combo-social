@@ -6,7 +6,8 @@ import RestaurantSelect from '../../screens/RestaurantSelect';
 import ProjectSelect from '../../screens/ProjectSelect';
 import ComboSelect from '../../screens/ComboSelect';
 import ConfirmOrder from '../../screens/ConfirmOrder';
-import DonationSuccess from '../../screens/CodeValidation';
+import CodeValidation from '../../screens/CodeValidation';
+import QRReader from '../../screens/QRReader';
 
 const ComboApp = _ => {
   const [state] = useContext(AppContext);
@@ -16,7 +17,8 @@ const ComboApp = _ => {
   if (currentScreen === 1) return <ProjectSelect />
   if (currentScreen === 2) return <ComboSelect />
   if (currentScreen === 3) return <ConfirmOrder />
-  if (currentScreen === 4) return <DonationSuccess />
+  if (currentScreen === 4) return <CodeValidation />
+  if (currentScreen === 9) return <QRReader />
 
   return <Main />
 }

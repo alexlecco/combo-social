@@ -8,7 +8,7 @@ const ProjectCard = ({ project }) => {
 
   const buttonStyle = RNEconstants.restaurantCard?.buttonStyle
 
-  function handleSelectProject(project) {
+  const handleSelectProject = (project) => {
     setState({
       ...state,
       currentScreen: state.currentScreen + 1,

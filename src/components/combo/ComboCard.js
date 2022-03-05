@@ -8,7 +8,7 @@ const ComboCard = ({ combo }) => {
 
   const buttonStyle = RNEconstants.restaurantCard?.buttonStyle
 
-  function handleSelectCombo(combo) {
+  const handleSelectCombo = (combo) => {
     setState({
       ...state,
       currentScreen: state.currentScreen + 1,
