@@ -1,29 +1,22 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Image, Button } from 'react-native';
-import { AppContext } from '../src/context/provider'
+import SvgQRCode from 'react-native-qrcode-svg';
+import { AppContext, initialState } from '../src/context/provider'
 
 const CodeValidation = _ => {
   const [state, setState] = useContext(AppContext);
+  const { orderKey } = state;
 
-  const getImage = _ => 'https://firebasestorage.googleapis.com/v0/b/combo-social.appspot.com/o/images%2Fqr-sample.png?alt=media&token=e625c887-4ddd-45fc-990d-1e069eea7ee5';
-  const onReturnMainScreen = _ => setState({
-    ...state,
-    currentScreen: 0,
-    selectedRestaurant: {},
-    selectedProject: {},
-    selectedCombo: {},
-  });  
+  const docRef = `https://combo-social.firebaseio.com/orders/${orderKey}`;
+  const onReturnMainScreen = _ => setState(initialState);
 
   return (
     <View style={styles.screenContainer}>
       <Text style={styles.titleText}> Solo falta validar tu pedido </Text>
       <Text style={styles.text}> Por favor, pedile a un mozo que escanée este codigo </Text>
-      <Image
-        style={styles.image}
-        source={{
-          uri: getImage(),
-        }}
-      />
+
+      <SvgQRCode value={docRef} />
+
       <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
     </View>
   )

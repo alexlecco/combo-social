@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { AppContext } from '../src/context/provider'
+import { AppContext, initialState } from '../src/context/provider'
 import { Header } from 'react-native-elements';
 import { ref, push } from "firebase/database";
 
@@ -13,31 +13,25 @@ const ConfirmOrder = () => {
   const { currentScreen, selectedRestaurant, selectedProject, selectedCombo } = state;
   const centerComponent = RNEconstants.ConfirmOrder?.centerComponent;
 
-  const restartProcess = _ => setState({
-    ...state,
-    currentScreen: 0,
-    selectedRestaurant: {},
-    selectedProject: {},
-    selectedCombo: {},
-  });
+  const restartProcess = _ => setState(initialState);
 
-  const redirectTo = (screenToRedirect) => setState({
+  const saveOrderKeyAndRedirectTo = (mynumber, screenToRedirect) => setState({
     ...state,
     currentScreen: screenToRedirect,
+    orderKey: mynumber,
   });
 
-  const saveOrder = _ => {
-    push(ref(database, 'orders/'), {
-      selectedRestaurant: state.selectedRestaurant.id,
-      selectedProject: state.selectedProject.id,
-      selectedCombo: state.selectedCombo.id,
-      status: 'pendent',
-    });
-  };
-
   const onConfirmOrder = _ => {
-    saveOrder();
-    redirectTo(4);
+    const orderToPush = {
+      selectedRestaurant: selectedRestaurant.id,
+      selectedProject: selectedProject.id,
+      selectedCombo: selectedCombo.id,
+      status: 'pending',
+    };
+
+    const newOrderRef = push(ref(database, 'orders/'), orderToPush);
+
+    saveOrderKeyAndRedirectTo(newOrderRef.key, 4);
   };
 
   return (
