@@ -12,7 +12,7 @@ const ComboSelect = _ => {
   const [state] = useContext(AppContext);
   const { currentScreen } = state;
   const [combos, setCombos] = useState([])
-  const centerComponent = RNEconstants.ComboSelect?.centerComponent;
+  const centerComponent = RNEconstants.comboSelect?.centerComponent;
 
   useEffect(() => {
     const combosRef = ref(database, 'combos/');

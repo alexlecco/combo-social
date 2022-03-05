@@ -31,6 +31,15 @@ const RNEconstants = {
   projectCard: {
     buttonStyle: cardStyle
   },
+  comboSelect: {
+    centerComponent: {
+      text: '¿Qué queres comer?',
+      style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' },
+    },
+    rightComponent: {
+      style: { color: '#ffffff', fontSize: 17, fontWeight: 'bold' },
+    }
+  },
   ConfirmOrder: {
     centerComponent: {
       text: 'Confirmá tu pedido'
