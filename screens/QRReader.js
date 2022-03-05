@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner, } from 'expo-barcode-scanner';
 import { AppContext, initialState } from '../src/context/provider';
+import { update, ref, getDatabase, } from 'firebase/database';
 
 const QRReader = _ => {
   const [state, setState] = useContext(AppContext);
@@ -15,10 +16,16 @@ const QRReader = _ => {
     })();
   }, []);
 
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = ({ /*type,*/ data }) => {
     setScanned(true);
-    alert(`Codigo de tipo: ${type} y datos: ${data} fueron escaneddos!`);
-    // alert('Orden aprobada con éxito. Ya fue enviada a la cocina.');
+    const orderRef = data.slice(35);
+    const db = getDatabase();
+    const updates = {};
+    updates[`${orderRef}/status`] = 'accepted';
+    alert('Orden aprobada con éxito. Ya fue enviada a la cocina.');
+    
+    // alert(`Codigo de tipo: ${type} y datos: ${data} fueron escaneados!`);
+    return update(ref(db), updates);
   }
 
   if (hasPermission === null) (<Text> Solicitando permiso para la cámara </Text>);
