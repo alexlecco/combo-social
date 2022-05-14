@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, LogBox } from 'react-native';
 
@@ -16,14 +15,12 @@ const App = _ => {
   })
 
   return(
-    <SafeAreaProvider>
-      <View style={styles.container}>
-        <ContextProvider>
-          <ComboApp />
-        </ContextProvider>
-        <StatusBar style='auto' />
-      </View>
-    </SafeAreaProvider>
+    <View style={styles.container}>
+      <ContextProvider>
+        <ComboApp />
+      </ContextProvider>
+      <StatusBar style='auto' />
+    </View>
   );
 }
 
