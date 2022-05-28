@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/provider'
 
 import Login from '../../screens/Login';
+import Loading from '../../screens/Loading';
 import RestaurantSelect from '../../screens/RestaurantSelect';
 import ProjectSelect from '../../screens/ProjectSelect';
 import ComboSelect from '../../screens/ComboSelect';
