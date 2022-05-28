@@ -2,6 +2,7 @@ import React, { useState, createContext } from 'react';
 
 const initialState = {
   currentScreen: 0,
+  currentUser: null,
   selectedRestaurant: {},
   selectedProject: {},
   selectedCombo: {},

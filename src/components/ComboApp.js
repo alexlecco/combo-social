@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../context/provider'
 
-import Main from '../../screens/Main';
+import Login from '../../screens/Login';
 import RestaurantSelect from '../../screens/RestaurantSelect';
 import ProjectSelect from '../../screens/ProjectSelect';
 import ComboSelect from '../../screens/ComboSelect';
@@ -12,7 +12,9 @@ import QRReader from '../../screens/QRReader';
 
 const ComboApp = _ => {
   const [state] = useContext(AppContext);
-  const { currentScreen } = state;
+  const { currentScreen, currentUser } = state;
+
+  if (!!!currentUser) return <Login />
 
   if (currentScreen === 0) return <RestaurantSelect />
   if (currentScreen === 1) return <ProjectSelect />
