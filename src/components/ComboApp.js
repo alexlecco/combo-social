@@ -15,7 +15,7 @@ const ComboApp = _ => {
   const [state] = useContext(AppContext);
   const { currentScreen, currentUser } = state;
 
-  if (!!!currentUser) return <Login />
+  // if (!!!currentUser) return <Login />
 
   if (currentScreen === 0) return <RestaurantSelect />
   if (currentScreen === 1) return <ProjectSelect />
