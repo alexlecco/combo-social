@@ -1,8 +1,22 @@
 import React, { useState, createContext } from 'react';
 
+const initialUsers = [{
+  id: 'user01',
+  roll: 'donator',
+  username: 'alexlecco',
+}, {
+  id: 'user02',
+  roll: 'waiter',
+  username: 'alesuarez',
+}, {
+  id: 'user03',
+  roll: 'cook',
+  username: 'mariocelis',
+},]
+
 const initialState = {
   currentScreen: 0,
-  currentUser: null,
+  currentUser: initialUsers[0],
   selectedRestaurant: {},
   selectedProject: {},
   selectedCombo: {},

@@ -10,7 +10,7 @@ import RNEconstants from '../src/constants/RNEconstants';
 
 const RestaurantSelect = _ => {
   const [state, setState] = useContext(AppContext);
-  const { currentScreen } = state;
+  const { currentScreen, currentUser } = state;
   const [restaurants, setRestaurants] = useState([]);
   const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
   const qrScanButton = (
@@ -52,7 +52,7 @@ const RestaurantSelect = _ => {
       <Header
         leftComponent={qrScanButton}
         centerComponent={centerComponent}
-        rightComponent={{text: currentScreen.toString()}}
+        rightComponent={{text: `${currentUser.username}`}}
       />
 
       <ScrollView>

@@ -10,7 +10,7 @@ import RNEconstants from '../src/constants/RNEconstants';
 
 const ComboSelect = _ => {
   const [state] = useContext(AppContext);
-  const { currentScreen } = state;
+  const { currentScreen, currentUser } = state;
   const [combos, setCombos] = useState([])
   const centerComponent = RNEconstants.comboSelect?.centerComponent;
 
@@ -39,7 +39,7 @@ const ComboSelect = _ => {
     <View style={styles.container}>
       <Header
         centerComponent={centerComponent}
-        rightComponent={{text: currentScreen.toString()}}
+        rightComponent={{text: `${currentUser.username}`}}
       />
 
       <ScrollView>
