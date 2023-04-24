@@ -6,7 +6,7 @@ const cardStyle = {
   marginBottom: -10,
   marginTop: -10,
   padding: 20,
-}
+};
 
 const RNEconstants = {
   restaurantSelect: {
@@ -48,6 +48,6 @@ const RNEconstants = {
       style: { color: '#ffffff', fontSize: 13, fontWeight: 'bold', marginTop: Platform.OS === 'ios' ? 30 : 50},
     }
   }
-}
+};
 
 export default RNEconstants;

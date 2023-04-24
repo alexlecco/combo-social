@@ -10,7 +10,11 @@ import ConfirmOrder from '../../screens/ConfirmOrder';
 import CodeValidation from '../../screens/CodeValidation';
 import SuccessValidation from '../../screens/SuccessValidation';
 import RollChange from '../../screens/RollChange';
+import WaiterView from '../../screens/WaiterView';
 import QRReader from '../../screens/QRReader';
+
+// constants
+import { rolls } from '../constants/index';
 
 const ComboApp = _ => {
   const [state] = useContext(AppContext);
@@ -18,14 +22,21 @@ const ComboApp = _ => {
 
   // if (!!!currentUser) return <Login />
 
-  if (currentScreen === 0) return <RestaurantSelect />
-  if (currentScreen === 1) return <ComboSelect />
-  if (currentScreen === 2) return <ProjectSelect />
-  if (currentScreen === 3) return <ConfirmOrder />
-  if (currentScreen === 4) return <CodeValidation />
-  if (currentScreen === 5) return <SuccessValidation />
-  if (currentScreen === 7) return <RollChange />
-  if (currentScreen === 9) return <QRReader />
+  if (currentUser.roll === rolls.DONATOR) {
+    if (currentScreen === 0) return <RestaurantSelect />
+    if (currentScreen === 1) return <ComboSelect />
+    if (currentScreen === 2) return <ProjectSelect />
+    if (currentScreen === 3) return <ConfirmOrder />
+    if (currentScreen === 4) return <CodeValidation />
+    if (currentScreen === 5) return <SuccessValidation />
+    if (currentScreen === 7) return <RollChange />
+  }
+
+  if (currentUser.roll === rolls.WAITER) {
+    if (currentScreen === 0) return <WaiterView />
+    if (currentScreen === 9) return <QRReader />
+    if (currentScreen === 7) return <RollChange />
+  }
 
   return <RestaurantSelect />
 }

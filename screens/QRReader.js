@@ -6,6 +6,7 @@ import { update, ref, getDatabase, } from 'firebase/database';
 
 const QRReader = _ => {
   const [state, setState] = useContext(AppContext);
+  const { currentUser } = state;
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -49,7 +50,11 @@ const QRReader = _ => {
         } 
         <Button
           title={'Volver a la pantalla principal'}
-          onPress={() => setState(initialState)}
+          onPress={() => setState({
+            ...initialState,
+            currentScreen: 0,
+            currentUser: currentUser,
+          })}
         />
       </View>
     </View>
