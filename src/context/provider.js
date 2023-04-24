@@ -35,4 +35,4 @@ const ContextProvider = ({children}) => {
 export default ContextProvider;
 export const AppContext = createContext();
 
-export { initialState };
+export { initialState, initialUsers };

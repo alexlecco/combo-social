@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import { initialState } from '../src/context/provider';
+import { initialState, initialUsers } from '../src/context/provider';
 import { AppContext } from '../src/context/provider';
 
 const RollChange = _ => {
@@ -10,11 +10,28 @@ const RollChange = _ => {
     ...initialState,
     currentUser: currentUser
   });
+  const changeRoll = roll => setState({
+    ...initialState,
+    currentUser: initialUsers.find(user => user.roll === roll),
+    currentScreen: 0,
+  });
 
   return (
     <View style={styles.screenContainer}>
 
-      <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
+      <View style={styles.buttonContainer}>
+        <Button title='Donador' onPress={() => changeRoll('donator')} />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button title='Mozo' onPress={() => changeRoll('waiter')} />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button title='Cocinero' onPress={() => changeRoll('cook')} />
+      </View>
+
+      <View style={{marginTop: 100}}>
+        <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
+      </View>
     </View>
   )
 }
@@ -33,6 +50,10 @@ const styles = StyleSheet.create({
   text: {
     marginBottom: 20,
   },
+  buttonContainer: {
+    marginTop: 20,
+    marginBottom: 20,
+  }
 })
 
 export default RollChange;
