@@ -13,18 +13,33 @@ const RestaurantSelect = _ => {
   const { currentScreen, currentUser } = state;
   const [restaurants, setRestaurants] = useState([]);
   const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
-  const qrScanButton = (
+
+  const rollChangeButton = (
     <Button
-      title='scan'
-      onPress={() => handleQrScanButton()}
+      title='rol'
+      onPress={() => handleRollChangeButton()}
     />
   );
-  const handleQrScanButton = () => {
+  const handleRollChangeButton = () => {
     setState({
       ...state,
-      currentScreen: 9,
+      currentScreen: 7,
     })
   }
+
+  // qr functionality
+  // const qrScanButton = (
+  //   <Button
+  //     title='scan'
+  //     onPress={() => handleQrScanButton()}
+  //   />
+  // );
+  // const handleQrScanButton = () => {
+  //   setState({
+  //     ...state,
+  //     currentScreen: 9,
+  //   })
+  // }
   
   useEffect(() => {
     const restaurantsRef = ref(database, 'restaurants/');
@@ -50,7 +65,8 @@ const RestaurantSelect = _ => {
   return(
     <View style={styles.container}>
       <Header
-        leftComponent={qrScanButton}
+        // leftComponent={qrScanButton}
+        leftComponent={rollChangeButton}
         centerComponent={centerComponent}
         rightComponent={{text: `${currentUser.username}`}}
       />

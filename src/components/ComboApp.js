@@ -9,6 +9,7 @@ import ComboSelect from '../../screens/ComboSelect';
 import ConfirmOrder from '../../screens/ConfirmOrder';
 import CodeValidation from '../../screens/CodeValidation';
 import SuccessValidation from '../../screens/SuccessValidation';
+import RollChange from '../../screens/RollChange';
 import QRReader from '../../screens/QRReader';
 
 const ComboApp = _ => {
@@ -23,6 +24,7 @@ const ComboApp = _ => {
   if (currentScreen === 3) return <ConfirmOrder />
   if (currentScreen === 4) return <CodeValidation />
   if (currentScreen === 5) return <SuccessValidation />
+  if (currentScreen === 7) return <RollChange />
   if (currentScreen === 9) return <QRReader />
 
   return <RestaurantSelect />
