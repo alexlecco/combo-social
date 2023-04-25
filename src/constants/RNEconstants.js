@@ -47,6 +47,11 @@ const RNEconstants = {
       text: 'Confirmá tu pedido',
       style: { color: '#ffffff', fontSize: 13, fontWeight: 'bold', marginTop: Platform.OS === 'ios' ? 30 : 50},
     }
+  },
+  waiterView: {
+    headerTitle: {
+      text: 'Mozo:',
+    }
   }
 };
 

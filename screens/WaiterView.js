@@ -1,9 +1,13 @@
 import React, { useContext } from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Header, Button, } from 'react-native-elements';
 import { AppContext } from '../src/context/provider';
+import RNEconstants from '../src/constants/RNEconstants';
 
 const WaiterView = _ => {
   const [state, setState] = useContext(AppContext);
+  const { currentUser } = state;
+  const centerComponent = `${RNEconstants.waiterView?.headerTitle?.text} ${currentUser.username}`;
 
   const handleQrScanButton = () => {
     setState({
@@ -12,10 +16,27 @@ const WaiterView = _ => {
     })
   }
 
-  return (
-    <View style={styles.screenContainer}>
+  const rollChangeButton = (
+    <Button
+      title='rol'
+      onPress={() => handleRollChangeButton()}
+    />
+  );
+  const handleRollChangeButton = () => {
+    setState({
+      ...state,
+      currentScreen: 7,
+    })
+  }
 
-      <View style={{marginTop: 100}}>
+  return (
+    <View style={styles.container}>
+      <Header
+        leftComponent={rollChangeButton}
+        centerComponent={centerComponent}
+      />
+
+      <View style={styles.panel}>
         <Button title='Escanear código QR' onPress={handleQrScanButton} />
       </View>
     </View>
@@ -23,7 +44,11 @@ const WaiterView = _ => {
 }
 
 const styles = StyleSheet.create({
-  screenContainer: {
+  container: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+  },
+  panel: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

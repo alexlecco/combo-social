@@ -10,7 +10,7 @@ import RNEconstants from '../src/constants/RNEconstants';
 
 const RestaurantSelect = _ => {
   const [state, setState] = useContext(AppContext);
-  const { currentScreen, currentUser } = state;
+  const { currentUser } = state;
   const [restaurants, setRestaurants] = useState([]);
   const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
 
@@ -27,20 +27,6 @@ const RestaurantSelect = _ => {
     })
   }
 
-  // qr functionality
-  // const qrScanButton = (
-  //   <Button
-  //     title='scan'
-  //     onPress={() => handleQrScanButton()}
-  //   />
-  // );
-  // const handleQrScanButton = () => {
-  //   setState({
-  //     ...state,
-  //     currentScreen: 9,
-  //   })
-  // }
-  
   useEffect(() => {
     const restaurantsRef = ref(database, 'restaurants/');
 
@@ -65,10 +51,9 @@ const RestaurantSelect = _ => {
   return(
     <View style={styles.container}>
       <Header
-        // leftComponent={qrScanButton}
         leftComponent={rollChangeButton}
         centerComponent={centerComponent}
-        rightComponent={{text: `${currentUser.username}`}}
+        rightComponent={currentUser.username}
       />
 
       <ScrollView>
