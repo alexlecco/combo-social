@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Header, Button, } from 'react-native-elements';
+import { Header, Button } from 'react-native-elements';
+
 import { AppContext } from '../src/context/provider';
+import database from '../firebase';
 import RNEconstants from '../src/constants/RNEconstants';
 
 const WaiterView = _ => {
@@ -9,12 +11,16 @@ const WaiterView = _ => {
   const { currentUser } = state;
   const centerComponent = `${RNEconstants.waiterView?.headerTitle?.text} ${currentUser.username}`;
 
+  useEffect(() => {
+    
+  }, []);
+
   const handleQrScanButton = () => {
     setState({
       ...state,
       currentScreen: 9,
     })
-  }
+  };
 
   const rollChangeButton = (
     <Button
@@ -27,7 +33,7 @@ const WaiterView = _ => {
       ...state,
       currentScreen: 7,
     })
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -37,11 +43,15 @@ const WaiterView = _ => {
       />
 
       <View style={styles.panel}>
+        
+      </View>
+
+      <View style={styles.footer}>
         <Button title='Escanear código QR' onPress={handleQrScanButton} />
       </View>
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -49,9 +59,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff',
   },
   panel: {
+    flex: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  footer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'grey',
   },
 });
 
