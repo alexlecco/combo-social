@@ -10,7 +10,7 @@ const initialUsers = [{
   username: 'alesuarez',
 }, {
   id: 'user03',
-  roll: 'cook',
+  roll: 'owner',
   username: 'mariocelis',
 },]
 

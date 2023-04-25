@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import { initialState, initialUsers } from '../src/context/provider';
 import { AppContext } from '../src/context/provider';
 
+// constants
+import { rolls } from '../src/constants/index';
+
 const RollChange = _ => {
   const [state, setState] = useContext(AppContext);
   const { currentUser } = state;
@@ -20,13 +23,13 @@ const RollChange = _ => {
     <View style={styles.screenContainer}>
 
       <View style={styles.buttonContainer}>
-        <Button title='Donador' onPress={() => changeRoll('donator')} />
+        <Button title='Donador' onPress={() => changeRoll(rolls.DONATOR)} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title='Mozo' onPress={() => changeRoll('waiter')} />
+        <Button title='Mozo' onPress={() => changeRoll(rolls.WAITER)} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title='Cocinero' onPress={() => changeRoll('cook')} />
+        <Button title='Cocinero' onPress={() => changeRoll(rolls.COOK)} />
       </View>
 
       <View style={{marginTop: 100}}>
