@@ -6,7 +6,7 @@ import { ref, onValue, getDatabase, } from 'firebase/database';
 
 const CodeValidation = _ => {
   const [state, setState] = useContext(AppContext);
-  const { orderKey } = state;
+  const { orderKey, currentUser } = state;
   const [status, setStatus] = useState();
   const docRef = `https://combo-social.firebaseio.com/orders/${orderKey}`;
 
@@ -14,7 +14,7 @@ const CodeValidation = _ => {
     if (status === 'accepted') {
       setState({
         ...state,
-        currentScreen: state.currentScreen + 1,
+        currentScreen: 5,
       })
     }
   }, [status])
@@ -28,7 +28,11 @@ const CodeValidation = _ => {
     });
   }, []);
 
-  const onReturnMainScreen = _ => setState(initialState);
+  const onReturnMainScreen = _ => setState({
+    ...initialState,
+    currentScreen: 0,
+    currentUser: currentUser,
+  })
 
   return (
     <View style={styles.screenContainer}>

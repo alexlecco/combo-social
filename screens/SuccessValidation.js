@@ -5,7 +5,12 @@ import { AppContext } from '../src/context/provider';
 
 const SuccessValidation = _ => {
   const [state, setState] = useContext(AppContext);
-  const onReturnMainScreen = _ => setState(initialState);
+  const {currentUser} = state;
+  const onReturnMainScreen = _ => setState({
+    ...initialState,
+    currentScreen: 0,
+    currentUser: currentUser,
+  })
 
   return (
     <View style={styles.screenContainer}>

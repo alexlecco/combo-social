@@ -1,6 +1,7 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { Header, Button } from 'react-native-elements';
+import { ref, onValue } from 'firebase/database';
 
 import { AppContext } from '../src/context/provider';
 import database from '../firebase';
@@ -10,10 +11,41 @@ import RNEconstants from '../src/constants/RNEconstants';
 const WaiterView = _ => {
   const [state, setState] = useContext(AppContext);
   const { currentUser } = state;
+  const [orders, setOrders] = useState([]);
+  const [combos, setCombos] = useState([])
   const centerComponent = `${RNEconstants.waiterView?.headerTitle?.text} ${currentUser.username}`;
 
   useEffect(() => {
-    
+    const OrdersRef = ref(database, 'orders/');
+    const CombosRef = ref(database, 'combos/');
+
+    onValue(OrdersRef, snap => {
+      let orders = [];
+      snap.forEach((child) => {
+        orders.push({
+          selectedCombo: child.val().selectedCombo,
+          selectedProject: child.val().selectedProject,
+          selectedRestaurant: child.val().selectedRestaurant,
+          table: child.val().table,
+          status: child.val().status,
+          id: child.key,
+        });
+      });
+      setOrders(orders);
+    });
+
+    onValue(CombosRef, snap => {
+      let combos = [];
+      snap.forEach(child => {
+        combos.push({
+          id: child.key,
+          name: child.val().name,
+          price: child.val().price,
+          restaurantId: child.val().restaurantId,
+        });
+      });
+      setCombos(combos);
+    });
   }, []);
 
   const handleQrScanButton = () => {
@@ -24,16 +56,26 @@ const WaiterView = _ => {
   };
 
   const rollChangeButton = (
-    <Button
-      title='rol'
-      onPress={() => handleRollChangeButton()}
-    />
+    <View style={{marginTop: 20}}>
+      <Button
+        title='rol'
+        onPress={() => handleRollChangeButton()}
+      />
+    </View>
   );
   const handleRollChangeButton = () => {
     setState({
       ...state,
       currentScreen: 7,
     })
+  };
+
+  const buildOrder = order => {
+    const combo = combos.find(combo => combo.id === order.item.selectedCombo)
+
+    console.log("combo:::::::::::", combo)
+
+    return <OrderCard order={order} combo={combo} />
   };
 
   return (
@@ -45,9 +87,10 @@ const WaiterView = _ => {
 
       <ScrollView>
         <View style={{ paddingBottom: 15 }}>
-          <OrderCard />
-          <OrderCard />
-          <OrderCard />
+          <FlatList
+            data={orders}
+            renderItem={order => buildOrder(order)}
+          />
         </View>
       </ScrollView>
 

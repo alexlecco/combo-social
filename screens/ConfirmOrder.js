@@ -10,10 +10,20 @@ import database from '../firebase';
 
 const ConfirmOrder = () => {
   const [state, setState] = useContext(AppContext);
-  const { currentScreen, selectedRestaurant, selectedProject, selectedCombo } = state;
+  const {
+    currentScreen,
+    currentUser,
+    selectedRestaurant,
+    selectedProject,
+    selectedCombo,
+  } = state;
   const centerComponent = RNEconstants.ConfirmOrder?.centerComponent;
 
-  const restartProcess = _ => setState(initialState);
+  const restartProcess = _ => setState({
+    ...initialState,
+    currentScreen: 0,
+    currentUser: currentUser,
+  });
 
   const saveOrderKeyAndRedirectTo = (orderKey, screenToRedirect) => setState({
     ...state,

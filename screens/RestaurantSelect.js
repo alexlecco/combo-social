@@ -15,10 +15,12 @@ const RestaurantSelect = _ => {
   const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
 
   const rollChangeButton = (
-    <Button
-      title='rol'
-      onPress={() => handleRollChangeButton()}
-    />
+    <View style={{marginTop: 20}}>
+      <Button
+        title='rol'
+        onPress={() => handleRollChangeButton()}
+      />
+    </View>
   );
   const handleRollChangeButton = () => {
     setState({
@@ -44,7 +46,7 @@ const RestaurantSelect = _ => {
     });
   }, []);
 
-  const buildRestaurant = (restaurant) => (
+  const buildRestaurant = restaurant => (
     <RestaurantCard restaurant={restaurant} />
   );
 
