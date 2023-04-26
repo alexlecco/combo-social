@@ -12,11 +12,11 @@ const initialUsers = [{
   id: 'user03',
   roll: 'owner',
   username: 'mariocelis',
-},]
+}];
 
 const initialState = {
   currentScreen: 0,
-  currentUser: initialUsers[0],
+  currentUser: initialUsers[1],
   selectedRestaurant: {},
   selectedProject: {},
   selectedCombo: {},
@@ -30,7 +30,7 @@ const ContextProvider = ({children}) => {
       {children}
     </AppContext.Provider>
   )
-}
+};
 
 export default ContextProvider;
 export const AppContext = createContext();

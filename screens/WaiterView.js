@@ -1,9 +1,10 @@
 import React, { useEffect, useContext } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { Header, Button } from 'react-native-elements';
 
 import { AppContext } from '../src/context/provider';
 import database from '../firebase';
+import OrderCard from '../src/components/order/OrderCard';
 import RNEconstants from '../src/constants/RNEconstants';
 
 const WaiterView = _ => {
@@ -42,15 +43,19 @@ const WaiterView = _ => {
         centerComponent={centerComponent}
       />
 
-      <View style={styles.panel}>
-        
-      </View>
+      <ScrollView>
+        <View style={{ paddingBottom: 15 }}>
+          <OrderCard />
+          <OrderCard />
+          <OrderCard />
+        </View>
+      </ScrollView>
 
       <View style={styles.footer}>
         <Button title='Escanear código QR' onPress={handleQrScanButton} />
       </View>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -58,16 +63,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
   },
-  panel: {
-    flex: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   footer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'grey',
+    height: 75,
   },
 });
 

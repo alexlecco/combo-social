@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { StyleSheet, View, ScrollView, FlatList } from 'react-native';
-import { Header, Button, } from 'react-native-elements';
+import { Header, Button } from 'react-native-elements';
 import { ref, onValue } from 'firebase/database';
 
 import { AppContext } from '../src/context/provider';
@@ -10,7 +10,7 @@ import RNEconstants from '../src/constants/RNEconstants';
 
 const RestaurantSelect = _ => {
   const [state, setState] = useContext(AppContext);
-  const { currentUser } = state;
+  const {currentUser} = state;
   const [restaurants, setRestaurants] = useState([]);
   const centerComponent = RNEconstants.restaurantSelect?.centerComponent;
 
