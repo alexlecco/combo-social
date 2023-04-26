@@ -10,8 +10,8 @@ import ConfirmOrder from '../../screens/ConfirmOrder';
 import CodeValidation from '../../screens/CodeValidation';
 import SuccessValidation from '../../screens/SuccessValidation';
 import RollChange from '../../screens/RollChange';
-import WaiterView from '../../screens/WaiterView';
-import QRReader from '../../screens/QRReader';
+import WaiterView from '../../screens/waiter/WaiterView';
+import QRReader from '../../screens/waiter/QRReader';
 
 // constants
 import { rolls } from '../constants/index';

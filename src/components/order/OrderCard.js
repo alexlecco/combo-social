@@ -11,9 +11,9 @@ const OrderCard = ({ order, combo }) => {
 
   return(
     <Card>
-      <Card.Title>{combo.name}</Card.Title>
-      <Card.Title>{`mesa: ${order.item.table}`}</Card.Title>
-      <Card.Title>{`estado: ${order.item.status}`}</Card.Title>
+      <Card.Title>{combo?.name}</Card.Title>
+      <Card.Title>{`mesa: ${order?.item.table}`}</Card.Title>
+      <Card.Title>{`estado: ${order?.item.status}`}</Card.Title>
       <Card.Image source={{ uri: getImage(combo.id) }} />
       <Button
         title='entregar orden'

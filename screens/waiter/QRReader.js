@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext, } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner, } from 'expo-barcode-scanner';
-import { AppContext, initialState } from '../src/context/provider';
+import { AppContext, initialState } from '../../src/context/provider';
 import { update, ref, getDatabase, } from 'firebase/database';
 
 const QRReader = _ => {
@@ -58,8 +58,8 @@ const QRReader = _ => {
         />
       </View>
     </View>
-  ) 
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -79,6 +79,6 @@ const styles = StyleSheet.create({
     marginBottom: 100,
     height: 100,
   }
-})
+});
 
 export default QRReader;
