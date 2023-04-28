@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { Header, Button } from 'react-native-elements';
 import { ref, onValue } from 'firebase/database';
 import { orderStatus } from '../../src/constants';
@@ -13,7 +13,7 @@ const WaiterView = _ => {
   const [state, setState] = useContext(AppContext);
   const { currentUser } = state;
   const [orders, setOrders] = useState([]);
-  const [combos, setCombos] = useState([])
+  const [combos, setCombos] = useState([]);
   const centerComponent = `${RNEconstants.waiterView?.headerTitle?.text} ${currentUser.username}`;
 
   useEffect(() => {
@@ -61,22 +61,18 @@ const WaiterView = _ => {
     setState({
       ...state,
       currentScreen: 7,
-    })
+    });
   };
 
   const buildOrder = order => {
-    const combo = combos.find(combo => combo.id === order.item.selectedCombo)
-
-    return <OrderCard order={order} combo={combo} />
+    const combo = combos.find(combo => combo.id === order.item.selectedCombo);
+    return <OrderCard order={order} combo={combo} />;
   };
 
-  return (
-    <View style={styles.container}>
-      <Header
-        leftComponent={rollChangeButton}
-        centerComponent={centerComponent}
-      />
-
+  const buildOrdersList = _ => (
+    orders.length === 0 ? (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>No hay ordenes por tomar</Text></View>
+    ) : (
       <ScrollView>
         <View style={{ paddingBottom: 15 }}>
           <FlatList
@@ -85,7 +81,16 @@ const WaiterView = _ => {
           />
         </View>
       </ScrollView>
+    )
+  );
 
+  return (
+    <View style={styles.container}>
+      <Header
+        leftComponent={rollChangeButton}
+        centerComponent={centerComponent}
+      />
+      {buildOrdersList()}
     </View>
   );
 };
