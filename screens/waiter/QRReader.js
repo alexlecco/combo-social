@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useContext, } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Modal, TextInput, Pressable } from 'react-native';
 import { BarCodeScanner, } from 'expo-barcode-scanner';
 import { AppContext, initialState } from '../../src/context/provider';
 import { update, ref, getDatabase, } from 'firebase/database';
+import TableInputModal from '../../src/components/waiter/TableInputModal';
 
 const QRReader = _ => {
   const [state, setState] = useContext(AppContext);
   const { currentUser } = state;
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [table, setTable] = useState(null);
+  const [orderRefState, setOrderRefState] = useState('')
 
   useEffect(() => {
     (async () => {
@@ -23,9 +27,9 @@ const QRReader = _ => {
     const db = getDatabase();
     const updates = {};
     updates[`${orderRef}/status`] = 'accepted';
-    alert('Orden aprobada con éxito. Ya fue enviada a la cocina.');
+    setOrderRefState(orderRef);
+    setModalVisible(true)
     
-    // alert(`Codigo de tipo: ${type} y datos: ${data} fueron escaneados!`);
     return update(ref(db), updates);
   }
 
@@ -38,6 +42,13 @@ const QRReader = _ => {
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
+      />
+      <TableInputModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        table={table}
+        setTable={setTable}
+        orderRefState={orderRefState}
       />
       <View style={styles.buttonsContainer}>
         {
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 100,
     height: 100,
-  }
+  },
 });
 
 export default QRReader;

@@ -1,5 +1,5 @@
-import React, { useState, useContext } from 'react'
-import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import React, { useContext } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { AppContext, initialState } from '../src/context/provider'
 import { Header } from 'react-native-elements';
 import { ref, push } from "firebase/database";
@@ -17,7 +17,6 @@ const ConfirmOrder = () => {
     selectedProject,
     selectedCombo,
   } = state;
-  // const [table, setTable] = useState();
   const centerComponent = RNEconstants.ConfirmOrder?.centerComponent;
 
   const restartProcess = _ => setState({
@@ -37,7 +36,7 @@ const ConfirmOrder = () => {
       selectedRestaurant: selectedRestaurant.id,
       selectedProject: selectedProject.id,
       selectedCombo: selectedCombo.id,
-      // table: table,
+      table: 'a confirmar',
       status: 'pending',
     };
 
@@ -60,20 +59,6 @@ const ConfirmOrder = () => {
         <DetailCard text={selectedRestaurant.name} type='restaurants' id={selectedRestaurant.id} />
         <DetailCard text={selectedCombo.name} type='combos' id={selectedCombo.id} />
       </View>
-
-      {/* <View style={{ marginLeft: 20, marginRight: 20 }}>
-        <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>ultimo paso!</Text>
-        <Text style={{ textAlign: 'center' }}>ingresá la mesa donde queres recibir tu comida:</Text>
-      </View>
-
-      <View style={styles.inputContainer}>
-        <TextInput
-          onChangeText={setTable}
-          value={table}
-          keyboardType='numeric'
-          style={styles.input}
-        />
-      </View> */}
 
       <View style={styles.buttons}>
         <Button title='Cancelar' onPress={restartProcess} />
