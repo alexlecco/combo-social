@@ -23,6 +23,8 @@ const OwnerView = _ => {
         projects.push({
           name: child.val().name,
           description: child.val().description,
+          currentValue: child.val().currentValue,
+          goalValue: child.val().goalValue,
           id: child.val().id,
         });
       });

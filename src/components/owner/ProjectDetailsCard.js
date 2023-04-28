@@ -10,6 +10,10 @@ const ProjectDetailsCard = ({ project }) => {
     <Card>
       <Card.Title>{project?.item.name}</Card.Title>
       <Card.Image source={{ uri: getImage(project?.item.id) }} />
+      <Card.Divider />
+      <Card.Title>{project?.item.name}</Card.Title>
+      <Card.Title>Monto objetivo: ${project?.item.goalValue}</Card.Title>
+      <Card.Title>Monto recaudado: ${project?.item.currentValue}</Card.Title>
     </Card>
   );
 };
