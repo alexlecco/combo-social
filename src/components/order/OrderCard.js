@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Card, Button } from 'react-native-elements';
-import RNEconstants from '../../constants/RNEconstants';
+import { update, ref, getDatabase, } from 'firebase/database';
 
 import { AppContext } from '../../../src/context/provider';
 import { orderStatus } from '../../constants'
@@ -15,13 +15,23 @@ const OrderCard = ({ order, combo }) => {
     })
   };
 
+  const changeOrderState = _ => {
+    const orderRef = `/orders/${order?.item.id}`;
+    const db = getDatabase();
+    const updates = {};
+    updates[`${orderRef}/status`] = order?.item.status === 'accepted' ? 'delivered' : 'payed';
+
+    return update(ref(db), updates);
+  }
+
   const getImage = (id) => (
     `https://firebasestorage.googleapis.com/v0/b/combo-social.appspot.com/o/combos%2F${id}.png?alt=media&token=b4b17bce-85c9-42df-9555-d484d99c4c3b`
   );
 
   const orderCardButton = _ => {
     if (order?.item.status === orderStatus.PENDING.status) return <Button title='Escanear código QR' onPress={handleQrScanButton} />
-    if (order?.item.status === orderStatus.ACCEPTED.status) return <Button title='Entregar orden' onPress={() => {}} />
+    if (order?.item.status === orderStatus.ACCEPTED.status) return <Button title='Entregar orden' onPress={changeOrderState} />
+    if (order?.item.status === orderStatus.DELIVERED.status) return <Button title='cobrar pedido' onPress={changeOrderState} />
   }
 
   return(
