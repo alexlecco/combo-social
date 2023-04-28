@@ -17,7 +17,7 @@ const ConfirmOrder = () => {
     selectedProject,
     selectedCombo,
   } = state;
-  const [table, setTable] = useState();
+  // const [table, setTable] = useState();
   const centerComponent = RNEconstants.ConfirmOrder?.centerComponent;
 
   const restartProcess = _ => setState({
@@ -37,7 +37,7 @@ const ConfirmOrder = () => {
       selectedRestaurant: selectedRestaurant.id,
       selectedProject: selectedProject.id,
       selectedCombo: selectedCombo.id,
-      table: table,
+      // table: table,
       status: 'pending',
     };
 
