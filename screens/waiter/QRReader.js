@@ -4,6 +4,7 @@ import { BarCodeScanner, } from 'expo-barcode-scanner';
 import { AppContext, initialState } from '../../src/context/provider';
 import { update, ref, getDatabase, } from 'firebase/database';
 import TableInputModal from '../../src/components/waiter/TableInputModal';
+import { orderStatus } from '../../src/constants';
 
 const QRReader = _ => {
   const [state, setState] = useContext(AppContext);
@@ -26,7 +27,7 @@ const QRReader = _ => {
     const orderRef = data.slice(35);
     const db = getDatabase();
     const updates = {};
-    updates[`${orderRef}/status`] = 'accepted';
+    updates[`${orderRef}/status`] = orderStatus.ACCEPTED.status;
     setOrderRefState(orderRef);
     setModalVisible(true)
     

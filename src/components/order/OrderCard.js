@@ -19,7 +19,7 @@ const OrderCard = ({ order, combo }) => {
     const orderRef = `/orders/${order?.item.id}`;
     const db = getDatabase();
     const updates = {};
-    updates[`${orderRef}/status`] = order?.item.status === 'accepted' ? 'delivered' : 'payed';
+    updates[`${orderRef}/status`] = order?.item.status === orderStatus.ACCEPTED.status ? orderStatus.DELIVERED.status : orderStatus.PAYED.status;
 
     return update(ref(db), updates);
   }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
 import { Header, Button } from 'react-native-elements';
 import { ref, onValue } from 'firebase/database';
+import { orderStatus } from '../../src/constants';
 
 import { AppContext } from '../../src/context/provider';
 import database from '../../firebase';
@@ -31,7 +32,7 @@ const WaiterView = _ => {
           id: child.key,
         });
       });
-      setOrders(orders);
+      setOrders(orders.filter(order => order.status !== orderStatus.PAYED.status));
     });
 
     onValue(CombosRef, snap => {
