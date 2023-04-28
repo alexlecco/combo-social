@@ -29,7 +29,7 @@ const ContextProvider = ({children}) => {
     <AppContext.Provider value={[state, setState]}>
       {children}
     </AppContext.Provider>
-  )
+  );
 };
 
 export default ContextProvider;

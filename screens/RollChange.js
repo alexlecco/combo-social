@@ -29,7 +29,7 @@ const RollChange = _ => {
         <Button title='Mozo' onPress={() => changeRoll(rolls.WAITER)} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button disabled title='Dueño' onPress={() => changeRoll(rolls.OWNER)} />
+        <Button title='Dueño' onPress={() => changeRoll(rolls.OWNER)} />
       </View>
 
       <View style={{marginTop: 100}}>

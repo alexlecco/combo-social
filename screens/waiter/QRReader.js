@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, } from 'react';
-import { View, Text, StyleSheet, Button, Modal, TextInput, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner, } from 'expo-barcode-scanner';
 import { AppContext, initialState } from '../../src/context/provider';
 import { update, ref, getDatabase, } from 'firebase/database';

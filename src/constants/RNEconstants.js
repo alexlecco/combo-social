@@ -52,7 +52,12 @@ const RNEconstants = {
     headerTitle: {
       text: 'Mozo:',
     }
-  }
+  },
+  ownerView: {
+    headerTitle: {
+      text: 'Dueño:',
+    }
+  },
 };
 
 export default RNEconstants;
