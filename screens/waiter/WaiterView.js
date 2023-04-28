@@ -48,13 +48,6 @@ const WaiterView = _ => {
     });
   }, []);
 
-  const handleQrScanButton = () => {
-    setState({
-      ...state,
-      currentScreen: 9,
-    })
-  };
-
   const rollChangeButton = (
     <View style={{marginTop: 20}}>
       <Button
@@ -72,8 +65,6 @@ const WaiterView = _ => {
 
   const buildOrder = order => {
     const combo = combos.find(combo => combo.id === order.item.selectedCombo)
-
-    console.log("combo:::::::::::", combo)
 
     return <OrderCard order={order} combo={combo} />
   };
@@ -94,9 +85,6 @@ const WaiterView = _ => {
         </View>
       </ScrollView>
 
-      <View style={styles.footer}>
-        <Button title='Escanear código QR' onPress={handleQrScanButton} />
-      </View>
     </View>
   );
 };
@@ -105,12 +93,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-  },
-  footer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'grey',
-    height: 75,
   },
 });
 

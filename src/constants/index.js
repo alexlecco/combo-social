@@ -1,11 +1,11 @@
 import colors from './colors';
 import bgImages from './bgImages';
 import rolls from './rolls';
-import status from './status';
+import orderStatus from './orderStatus';
 
 export {
     colors,
     bgImages,
     rolls,
-    status,
+    orderStatus,
 };

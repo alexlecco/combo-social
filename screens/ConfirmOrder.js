@@ -61,7 +61,7 @@ const ConfirmOrder = () => {
         <DetailCard text={selectedCombo.name} type='combos' id={selectedCombo.id} />
       </View>
 
-      <View style={{ marginLeft: 20, marginRight: 20 }}>
+      {/* <View style={{ marginLeft: 20, marginRight: 20 }}>
         <Text style={{ textAlign: 'center', fontWeight: 'bold' }}>ultimo paso!</Text>
         <Text style={{ textAlign: 'center' }}>ingresá la mesa donde queres recibir tu comida:</Text>
       </View>
@@ -73,11 +73,11 @@ const ConfirmOrder = () => {
           keyboardType='numeric'
           style={styles.input}
         />
-      </View>
+      </View> */}
 
       <View style={styles.buttons}>
         <Button title='Cancelar' onPress={restartProcess} />
-        <Button disabled={!table} title='Confirmar' onPress={onConfirmOrder} />
+        <Button title='Confirmar' onPress={onConfirmOrder} />
       </View>
     </View>
   );
