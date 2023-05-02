@@ -2,23 +2,31 @@ const orderStatus = {
   PENDING: {
     status: 'pending',
     text: 'pendiente',
-    color: 'red',
+    color: '#fc5a4e',
+    key: 'PENDING',
+    textButton: 'Escanear código QR',
   },
   ACCEPTED: {
     status: 'accepted',
     text: 'preparando',
-    color: 'orange',
+    color: '#fc9f4e',
+    key: 'ACCEPTED',
+    textButton: 'Entregar orden',
   },
   DELIVERED: {
     status: 'delivered',
     text: 'entregado',
-    color: 'green',
+    color: '#4efc57',
+    key: 'DELIVERED',
+    textButton: 'cobrar pedido',
   },
   PAYED: {
     status: 'payed',
     text: 'pagado',
-    color: 'blue',
-  }
+    color: '#4e91fc',
+    key: 'PAYED',
+    textButton: '',
+  },
 };
 
 export default orderStatus;

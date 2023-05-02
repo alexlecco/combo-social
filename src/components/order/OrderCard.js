@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { View } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import { update, ref, getDatabase, } from 'firebase/database';
 
@@ -12,7 +13,7 @@ const OrderCard = ({ order, combo }) => {
     setState({
       ...state,
       currentScreen: 9,
-    })
+    });
   };
 
   const changeOrderState = _ => {
@@ -29,19 +30,23 @@ const OrderCard = ({ order, combo }) => {
   );
 
   const orderCardButton = _ => {
-    if (order?.item.status === orderStatus.PENDING.status) return <Button title='Escanear código QR' onPress={handleQrScanButton} />
-    if (order?.item.status === orderStatus.ACCEPTED.status) return <Button title='Entregar orden' onPress={changeOrderState} />
-    if (order?.item.status === orderStatus.DELIVERED.status) return <Button title='cobrar pedido' onPress={changeOrderState} />
-  }
+    if (order?.item.status === orderStatus.PENDING.status) return <Button title={orderStatus.PENDING.textButton} onPress={handleQrScanButton} />
+    if (order?.item.status === orderStatus.ACCEPTED.status) return <Button title={orderStatus.ACCEPTED.textButton} onPress={changeOrderState} />
+    if (order?.item.status === orderStatus.DELIVERED.status) return <Button title={orderStatus.DELIVERED.textButton} onPress={changeOrderState} />
+  };
+
+  const uppercaseStatus = order?.item.status.toUpperCase();
 
   return(
-    <Card>
-      <Card.Title>{combo?.name}</Card.Title>
-      <Card.Title>{`mesa: ${order?.item.table}`}</Card.Title>
-      <Card.Title>{`estado: ${order?.item.status}`}</Card.Title>
-      <Card.Image source={{ uri: getImage(combo?.id) }} />
-      {orderCardButton()}
-    </Card>
+    <View style={{backgroundColor: orderStatus[uppercaseStatus].color, paddingBottom: 20}}>
+      <Card>
+        <Card.Title>{combo?.name}</Card.Title>
+        <Card.Title>{`mesa: ${order?.item.table}`}</Card.Title>
+        <Card.Title>{`estado: ${order?.item.status}`}</Card.Title>
+        <Card.Image source={{ uri: getImage(combo?.id) }} />
+        {orderCardButton()}
+      </Card>
+    </View>
   );
 };
 
