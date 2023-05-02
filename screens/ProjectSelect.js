@@ -24,10 +24,20 @@ const ProjectSelect = _ => {
           description: child.val().description,
           id: child.val().id,
           name: child.val().name,
+          currentValue: child.val().currentValue,
+          goalValue: child.val().goalValue,
           _key: child.key,
+          id: child.val().id,
         });
       });
-      setProjects(projects);
+
+      const updatedProjects = projects.map(proj => {
+        const percentage = (proj.currentValue * 100) / proj.goalValue / 100
+        proj.percentage = percentage
+        return proj
+      })
+
+      setProjects(updatedProjects);
     });
   }, []);
 

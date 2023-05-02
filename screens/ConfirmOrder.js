@@ -52,7 +52,7 @@ const ConfirmOrder = () => {
         rightComponent={{text: currentScreen.toString()}}
       />
       <View style={styles.title}>
-        <Text> Detalle </Text>
+        <Text> Detalle de la orden </Text>
       </View>
       <View style={styles.cards}>
         <DetailCard text={selectedProject.name} type='projects' id={selectedProject.id} />

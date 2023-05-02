@@ -12,16 +12,15 @@ const ProjectCard = ({ project }) => {
     setState({
       ...state,
       currentScreen: state.currentScreen + 1,
-      selectedProject: project.item,
+      selectedProject: project?.item,
     });
   };
 
-  const defaultValue=0.73 // change this hardcoded value
   const getProgressBar = _ => (
     <View>
-      <LinearProgress color="primary" value={defaultValue} variant='determinate' style={{ height: 40 }} />
+      <LinearProgress color="primary" value={project?.item.percentage} variant='determinate' style={{ height: 40 }} />
       <View style={styles.progressBar}>
-        <Text style={styles.progressBarText}>{defaultValue*100}%</Text>
+        <Text style={styles.progressBarText}>{(project?.item.percentage * 100).toFixed(1)}%</Text>
       </View>
     </View>
   );
@@ -32,9 +31,9 @@ const ProjectCard = ({ project }) => {
 
   return (
     <Card>
-      <Card.Title>{project.item.name}</Card.Title>
+      <Card.Title>{project?.item.name}</Card.Title>
       {getProgressBar()}
-      <Card.Image source={{ uri: getImage(project.item.id) }} />
+      <Card.Image source={{ uri: getImage(project?.item.id) }} />
       <Button
         title='apoyar este proyecto'
         icon={{ name: 'favorite', color: 'white' }}
