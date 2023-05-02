@@ -28,7 +28,14 @@ const OwnerView = _ => {
           id: child.val().id,
         });
       });
-      setProjects(projects);
+
+      const updatedProjects = projects.map(proj => {
+        const percentage = (proj.currentValue * 100) / proj.goalValue / 100
+        proj.percentage = percentage
+        return proj
+      })
+
+      setProjects(updatedProjects);
     });
   }, []);
 

@@ -8,7 +8,6 @@ const ComboCard = ({ combo }) => {
   const [state, setState] = useContext(AppContext)
   const formattedPrice = currencyFormatter(combo?.item.price);
   const formattedDonation = currencyFormatter(combo?.item.donationAmount);
-
   const buttonStyle = RNEconstants.restaurantCard?.buttonStyle
 
   const handleSelectCombo = (combo) => {
