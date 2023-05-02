@@ -14,11 +14,13 @@ const WaiterView = _ => {
   const { currentUser } = state;
   const [orders, setOrders] = useState([]);
   const [combos, setCombos] = useState([]);
+  const [projects, setProjects] = useState([]);
   const centerComponent = `${RNEconstants.waiterView?.headerTitle?.text} ${currentUser.username}`;
 
   useEffect(() => {
     const OrdersRef = ref(database, 'orders/');
     const CombosRef = ref(database, 'combos/');
+    const ProjectsRef = ref(database, 'projects/');
 
     onValue(OrdersRef, snap => {
       let orders = [];
@@ -39,13 +41,28 @@ const WaiterView = _ => {
       let combos = [];
       snap.forEach(child => {
         combos.push({
-          id: child.key,
           name: child.val().name,
           price: child.val().price,
+          donationAmount: child.val().donationAmount,
           restaurantId: child.val().restaurantId,
+          id: child.key,
         });
       });
       setCombos(combos);
+    });
+
+    onValue(ProjectsRef, snap => {
+      let projects = [];
+      snap.forEach(child => {
+        projects.push({
+          id: child.val().id,
+          description: child.val().description,
+          goalValue: child.val().goalValue,
+          currentValue: child.val().currentValue,
+          name: child.val().name,
+        });
+      });
+      setProjects(projects);
     });
   }, []);
 
@@ -65,13 +82,15 @@ const WaiterView = _ => {
   };
 
   const buildOrder = order => {
-    const combo = combos.find(combo => combo.id === order.item.selectedCombo);
-    return <OrderCard order={order} combo={combo} />;
+    const combo = combos.find(combo => combo.id === order?.item.selectedCombo);
+    const project = projects.find(project => project.id === order?.item.selectedProject);
+
+    return <OrderCard order={order} combo={combo} project={project} />;
   };
 
   const buildOrdersList = _ => (
     orders.length === 0 ? (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text>No hay ordenes por tomar</Text></View>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text> No hay ordenes por tomar </Text></View>
     ) : (
       <ScrollView>
         <View style={{ paddingBottom: 15 }}>

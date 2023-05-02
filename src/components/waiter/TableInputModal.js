@@ -15,7 +15,7 @@ const TableInputModal = ({
     setModalVisible(!modalVisible)
 
     return update(ref(db), updates);
-  }
+  };
 
   return(
     <Modal
@@ -46,8 +46,8 @@ const TableInputModal = ({
         </View>
       </View>
     </Modal>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   centeredView: {
