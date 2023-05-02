@@ -19,6 +19,6 @@ const orderStatus = {
     text: 'pagado',
     color: 'blue',
   }
-}
+};
 
 export default orderStatus;

@@ -36,8 +36,8 @@ const RollChange = _ => {
         <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
       </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   screenContainer: {
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: 200,
   }
-})
+});
 
 export default RollChange;

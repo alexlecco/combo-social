@@ -10,7 +10,7 @@ import RNEconstants from '../src/constants/RNEconstants';
 
 const ProjectSelect = _ => {
   const [state] = useContext(AppContext);
-  const { currentScreen, currentUser } = state;
+  const { currentUser } = state;
   const [projects, setProjects] = useState([])
   const centerComponent = RNEconstants.projectSelect?.centerComponent;
 

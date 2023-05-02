@@ -31,20 +31,20 @@ const ComboApp = _ => {
     if (currentScreen === 4) return <CodeValidation />
     if (currentScreen === 5) return <SuccessValidation />
     if (currentScreen === 7) return <RollChange />
-  }
+  };
 
   if (currentUser.roll === rolls.WAITER) {
     if (currentScreen === 0) return <WaiterView />
     if (currentScreen === 9) return <QRReader />
     if (currentScreen === 7) return <RollChange />
-  }
+  };
 
   if (currentUser.roll === rolls.OWNER) {
     if (currentScreen === 0) return <OwnerView />
     if (currentScreen === 7) return <RollChange />
-  }
+  };
 
   return <RestaurantSelect />
-}
+};
 
 export default ComboApp;
