@@ -15,9 +15,9 @@ const CodeValidation = _ => {
       setState({
         ...state,
         currentScreen: 5,
-      })
-    }
-  }, [status])
+      });
+    };
+  }, [status]);
 
   useEffect(() => {
     const db = getDatabase();
@@ -32,7 +32,7 @@ const CodeValidation = _ => {
     ...initialState,
     currentScreen: 0,
     currentUser: currentUser,
-  })
+  });
 
   return (
     <View style={styles.screenContainer}>
@@ -41,10 +41,12 @@ const CodeValidation = _ => {
 
       <SvgQRCode value={docRef} />
 
-      <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
+      <View style={{ marginTop: 75 }}>
+        <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
+      </View>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   screenContainer: {
@@ -58,13 +60,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   text: {
-    marginBottom: 20,
+    marginBottom: 75,
   },
   image: {
     width: 250,
     height: 250,
     marginBottom: 20,
   },
-})
+});
 
 export default CodeValidation;

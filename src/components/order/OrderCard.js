@@ -37,12 +37,18 @@ const OrderCard = ({ order, combo }) => {
 
   const uppercaseStatus = order?.item.status.toUpperCase();
 
+  const getSpanishStatus = _ => {
+    if (order?.item.status === orderStatus.PENDING.status) return orderStatus.PENDING.text 
+    if (order?.item.status === orderStatus.ACCEPTED.status) return orderStatus.ACCEPTED.text 
+    if (order?.item.status === orderStatus.DELIVERED.status) return orderStatus.DELIVERED.text 
+  }
+
   return(
-    <View style={{backgroundColor: orderStatus[uppercaseStatus].color, paddingBottom: 20}}>
+    <View style={{backgroundColor: orderStatus[uppercaseStatus]?.color, paddingBottom: 20}}>
       <Card>
         <Card.Title>{combo?.name}</Card.Title>
         <Card.Title>{`mesa: ${order?.item.table}`}</Card.Title>
-        <Card.Title>{`estado: ${order?.item.status}`}</Card.Title>
+        <Card.Title>{`estado: ${getSpanishStatus()}`}</Card.Title>
         <Card.Image source={{ uri: getImage(combo?.id) }} />
         {orderCardButton()}
       </Card>

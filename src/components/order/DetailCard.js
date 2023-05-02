@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-const ProjectCard = ({ text, type, id }) => {
+const DetailCard = ({ text, type, id }) => {
   const getImage = _ => (
     `https://firebasestorage.googleapis.com/v0/b/combo-social.appspot.com/o/${type}%2F${id}.png?alt=media&token=b4b17bce-85c9-42df-9555-d484d99c4c3b`
   );
@@ -40,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProjectCard;
+export default DetailCard;

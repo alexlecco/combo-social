@@ -55,9 +55,9 @@ const ConfirmOrder = () => {
         <Text> Detalle de la orden </Text>
       </View>
       <View style={styles.cards}>
-        <DetailCard text={selectedProject.name} type='projects' id={selectedProject.id} />
         <DetailCard text={selectedRestaurant.name} type='restaurants' id={selectedRestaurant.id} />
         <DetailCard text={selectedCombo.name} type='combos' id={selectedCombo.id} />
+        <DetailCard text={selectedProject.name} type='projects' id={selectedProject.id} />
       </View>
 
       <View style={styles.buttons}>
