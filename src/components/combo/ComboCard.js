@@ -2,9 +2,12 @@ import React, { useContext } from 'react';
 import { Card, Button } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import { AppContext } from '../../context/provider';
+import currencyFormatter from '../../utils/currencyFormatter';
 
 const ComboCard = ({ combo }) => {
   const [state, setState] = useContext(AppContext)
+  const formattedPrice = currencyFormatter(combo?.item.price);
+  const formattedDonation = currencyFormatter(combo?.item.donationAmount);
 
   const buttonStyle = RNEconstants.restaurantCard?.buttonStyle
 
@@ -12,7 +15,7 @@ const ComboCard = ({ combo }) => {
     setState({
       ...state,
       currentScreen: state.currentScreen + 1,
-      selectedCombo: combo.item,
+      selectedCombo: combo?.item,
     })
   };
 
@@ -22,8 +25,10 @@ const ComboCard = ({ combo }) => {
 
   return (
     <Card>
-      <Card.Title>{combo.item.name}</Card.Title>
-      <Card.Image source={{ uri: getImage(combo.item.id) }} />
+      <Card.Title>{combo?.item.name}</Card.Title>
+      <Card.Title>{`pagando: ${formattedPrice}`}</Card.Title>
+      <Card.Title>{`vas a aportar: ${formattedDonation}`}</Card.Title>
+      <Card.Image source={{ uri: getImage(combo?.item.id) }} />
       <Button
         title='elegir este combo'
         icon={{ name: 'fastfood', color: 'white' }}

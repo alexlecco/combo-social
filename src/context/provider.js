@@ -16,7 +16,7 @@ const initialUsers = [{
 
 const initialState = {
   currentScreen: 0,
-  currentUser: initialUsers[1],
+  currentUser: initialUsers[0],
   selectedRestaurant: {},
   selectedProject: {},
   selectedCombo: {},

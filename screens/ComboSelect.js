@@ -24,6 +24,7 @@ const ComboSelect = _ => {
           id: child.key,
           name: child.val().name,
           price: child.val().price,
+          donationAmount: child.val().donationAmount,
           restaurantId: child.val().restaurantId,
         });
       });
