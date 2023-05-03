@@ -53,9 +53,14 @@ const RNEconstants = {
       text: 'Mozo:',
     }
   },
+  cookView: {
+    headerTitle: {
+      text: 'Cocinero:',
+    }
+  },
   ownerView: {
     headerTitle: {
-      text: 'Dueño:',
+      text: 'Encargado:',
     }
   },
 };

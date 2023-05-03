@@ -11,6 +11,7 @@ import CodeValidation from '../../screens/CodeValidation';
 import SuccessValidation from '../../screens/SuccessValidation';
 import RollChange from '../../screens/RollChange';
 import WaiterView from '../../screens/waiter/WaiterView';
+import CookView from '../../screens/cook/CookView';
 import OwnerView from '../../screens/owner/OwnerView';
 import QRReader from '../../screens/waiter/QRReader';
 
@@ -36,6 +37,11 @@ const ComboApp = _ => {
   if (currentUser.roll === rolls.WAITER) {
     if (currentScreen === 0) return <WaiterView />
     if (currentScreen === 9) return <QRReader />
+    if (currentScreen === 7) return <RollChange />
+  };
+
+  if (currentUser.roll === rolls.COOK) {
+    if (currentScreen === 0) return <CookView />
     if (currentScreen === 7) return <RollChange />
   };
 

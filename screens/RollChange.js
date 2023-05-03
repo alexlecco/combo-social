@@ -9,10 +9,12 @@ import { rolls } from '../src/constants/index';
 const RollChange = _ => {
   const [state, setState] = useContext(AppContext);
   const { currentUser } = state;
+
   const onReturnMainScreen = _ => setState({
     ...initialState,
-    currentUser: currentUser
+    currentUser: currentUser,
   });
+
   const changeRoll = roll => setState({
     ...initialState,
     currentUser: initialUsers.find(user => user.roll === roll),
@@ -29,7 +31,10 @@ const RollChange = _ => {
         <Button title='Mozo' onPress={() => changeRoll(rolls.WAITER)} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title='Dueño' onPress={() => changeRoll(rolls.OWNER)} />
+        <Button title='Cocinero' onPress={() => changeRoll(rolls.COOK)} />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button title='Encargado' onPress={() => changeRoll(rolls.OWNER)} />
       </View>
 
       <View style={{marginTop: 100}}>
