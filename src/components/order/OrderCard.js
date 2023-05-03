@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
-import { View } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import { update, ref, getDatabase, } from 'firebase/database';
-
 import { AppContext } from '../../../src/context/provider';
 import { orderStatus } from '../../constants';
+import currencyFormatter from '../../utils/currencyFormatter';
 
 const OrderCard = ({ order, combo, project }) => {
   const [state, setState] = useContext(AppContext);
+  const formattedPrice = currencyFormatter(combo?.price);
 
   const handleQrScanButton = () => {
     setState({
@@ -35,7 +36,7 @@ const OrderCard = ({ order, combo, project }) => {
     updates[`${orderRef}/status`] = orderStatus.PAYED.status;
 
     return update(ref(db), updates);
-  }
+  };
 
   const getImage = id => (
     `https://firebasestorage.googleapis.com/v0/b/combo-social.appspot.com/o/combos%2F${id}.png?alt=media&token=b4b17bce-85c9-42df-9555-d484d99c4c3b`
@@ -59,13 +60,22 @@ const OrderCard = ({ order, combo, project }) => {
     <View style={{backgroundColor: orderStatus[uppercaseStatus]?.color, paddingBottom: 20}}>
       <Card>
         <Card.Title>{combo?.name}</Card.Title>
-        <Card.Title>{`mesa: ${order?.item.table}`}</Card.Title>
-        <Card.Title>{`estado: ${getSpanishStatus()}`}</Card.Title>
+        <View style={styles.orderDetail}>
+          <Text>{`mesa: ${order?.item.table}`}</Text>
+          <Text>{`estado: ${getSpanishStatus()}`}</Text>
+          <Text>{`precio: ${formattedPrice}`}</Text>
+        </View>
         <Card.Image source={{ uri: getImage(combo?.id) }} />
         {orderCardButton()}
       </Card>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  orderDetail: {
+    margin: 20,
+  }
+});
 
 export default OrderCard;
