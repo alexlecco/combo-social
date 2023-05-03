@@ -19,7 +19,9 @@ const SuccessValidation = _ => {
       <Text style={styles.text}> Solo esperá y te lo vamos a traer a la brevedad </Text>
       <Text style={styles.text}> Gracias por ayudar </Text>
 
-      <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
+      <View style={styles.buttonContainer}>
+        <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
+      </View>
     </View>
   )
 }
@@ -37,6 +39,9 @@ const styles = StyleSheet.create({
   },
   text: {
     marginBottom: 20,
+  },
+  buttonContainer: {
+    marginTop: 50,
   },
 })
 

@@ -9,6 +9,7 @@ const CodeValidation = _ => {
   const { orderKey, currentUser } = state;
   const [status, setStatus] = useState();
   const docRef = `https://combo-social.firebaseio.com/orders/${orderKey}`;
+  let logoFromFile = require('../assets/logo.png');
 
   useEffect(() => {
     if (status === 'accepted') {
@@ -39,7 +40,7 @@ const CodeValidation = _ => {
       <Text style={styles.titleText}> Solo falta validar tu pedido </Text>
       <Text style={styles.text}> Por favor, pedile a un mozo que escanée este codigo </Text>
 
-      <SvgQRCode value={docRef} />
+      <SvgQRCode value={docRef} size={200} logo={logoFromFile} logoSize={150} />
 
       <View style={{ marginTop: 75 }}>
         <Button title='Volver a la pantalla principal' onPress={onReturnMainScreen} />
