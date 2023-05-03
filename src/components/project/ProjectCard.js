@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-import { Card, Button, LinearProgress } from 'react-native-elements';
+import { Card, Button, LinearProgress, Badge } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import { AppContext } from '../../context/provider';
 import currencyFormatter from '../../utils/currencyFormatter';
@@ -11,6 +11,7 @@ const ProjectCard = ({ project }) => {
   const [displayed, setDisplayed] = useState(false);
   const progressBarText = (project?.item.percentage * 100).toFixed(1) < 100 ? (project?.item.percentage * 100).toFixed(1) : 100;
   const formattedGoalValue = currencyFormatter(project?.item.goalValue);
+  const projectAccomplished = project?.item.percentage >= 1;
 
   const handleSelectProject = project => {
     setState({
@@ -42,6 +43,12 @@ const ProjectCard = ({ project }) => {
       </Pressable>
       {displayed &&
         <View>
+          {projectAccomplished && 
+            <View style={styles.badgeContainer}>
+              <Badge status="success" value="¡proyecto cumplido!" />
+              <Text style={styles.badgeText}>Gracias a tu participación pudimos alcanzar este objetivo.</Text>
+            </View>
+          }
           <Card.Title style={styles.descriptionTitle}> Conocé este proyecto: </Card.Title>
           <View style={styles.descriptionContainer}>
             <Text>{project?.item.description}</Text>
@@ -97,6 +104,13 @@ const styles = StyleSheet.create({
   },
   goalValue: {
     paddingTop: 20,
+  },
+  badgeContainer: {
+    paddingTop: 20,
+  },
+  badgeText: {
+    paddingLeft: 20,
+    paddingRight: 20,
   },
 });
 
