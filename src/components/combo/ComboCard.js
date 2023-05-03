@@ -16,7 +16,7 @@ const ComboCard = ({ combo }) => {
       ...state,
       currentScreen: state.currentScreen + 1,
       selectedCombo: combo?.item,
-    })
+    });
   };
 
   const getImage = (id) => (
