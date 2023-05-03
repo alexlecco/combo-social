@@ -38,6 +38,7 @@ const TableInputModal = ({
             style={styles.input}
           />
           <Pressable
+            disabled={!table}
             style={[styles.button, styles.buttonClose]}
             onPress={() => onHandleModalButton()}
           >
