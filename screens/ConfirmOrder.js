@@ -51,8 +51,8 @@ const ConfirmOrder = () => {
         centerComponent={centerComponent}
         rightComponent={{text: currentScreen.toString()}}
       />
-      <View style={styles.title}>
-        <Text> Detalle de la orden </Text>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}> Detalle de la orden </Text>
       </View>
       <View style={styles.cards}>
         <DetailCard text={selectedRestaurant.name} type='restaurants' id={selectedRestaurant.id} />
@@ -73,11 +73,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#ffffff',
   },
-  title: {
+  titleContainer: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     textAlign: 'center',
+  },
+  title: {
+    fontSize: 20,
   },
   cards: {
     flex: 4,

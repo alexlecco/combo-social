@@ -29,11 +29,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingLeft: 10,
-    paddingRight: 10,
+    padding: 30,
   },
   text: {
     color: 'black',
+    fontSize: 16,
   },
   image: {
     width: '30%',

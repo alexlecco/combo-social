@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { Card, Button } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import { AppContext } from '../../context/provider';
@@ -25,9 +26,11 @@ const ComboCard = ({ combo }) => {
   return (
     <Card>
       <Card.Title>{combo?.item.name}</Card.Title>
-      <Card.Title>{`pagando: ${formattedPrice}`}</Card.Title>
-      <Card.Title>{`vas a aportar: ${formattedDonation}`}</Card.Title>
       <Card.Image source={{ uri: getImage(combo?.item.id) }} />
+      <View style={styles.priceContainer}>
+        <Card.Title>{`pagando: ${formattedPrice}`}</Card.Title>
+        <Card.Title>{`vas a aportar: ${formattedDonation}`}</Card.Title>
+      </View>
       <Button
         title='elegir este combo'
         icon={{ name: 'fastfood', color: 'white' }}
@@ -37,5 +40,13 @@ const ComboCard = ({ combo }) => {
     </Card>
   );
 };
+
+const styles = StyleSheet.create({
+  priceContainer: {
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+  },
+});
 
 export default ComboCard;

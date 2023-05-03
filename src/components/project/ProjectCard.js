@@ -45,7 +45,7 @@ const ProjectCard = ({ project }) => {
           <Card.Title style={styles.descriptionTitle}> Conocé este proyecto: </Card.Title>
           <View style={styles.descriptionContainer}>
             <Text>{project?.item.description}</Text>
-            <Text style={styles.goalValue}>Monto necesario: {formattedGoalValue}</Text>
+            <Text style={styles.goalValue}> Monto necesario: {formattedGoalValue} </Text>
           </View>
         </View>
       }
