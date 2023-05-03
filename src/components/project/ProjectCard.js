@@ -1,14 +1,17 @@
-import React, { useContext } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Card, Button, LinearProgress } from 'react-native-elements';
 import RNEconstants from '../../constants/RNEconstants';
 import { AppContext } from '../../context/provider';
+import currencyFormatter from '../../utils/currencyFormatter';
 
 const ProjectCard = ({ project }) => {
   const [state, setState] = useContext(AppContext);
   const buttonStyle = RNEconstants.restaurantCard?.buttonStyle;
-  const progressBarText = (project?.item.percentage * 100).toFixed(1) < 100 ? (project?.item.percentage * 100).toFixed(1) : 100
-  
+  const [displayed, setDisplayed] = useState(false);
+  const progressBarText = (project?.item.percentage * 100).toFixed(1) < 100 ? (project?.item.percentage * 100).toFixed(1) : 100;
+  const formattedGoalValue = currencyFormatter(project?.item.goalValue);
+
   const handleSelectProject = project => {
     setState({
       ...state,
@@ -34,7 +37,18 @@ const ProjectCard = ({ project }) => {
     <Card>
       <Card.Title>{project?.item.name}</Card.Title>
       {getProgressBar()}
-      <Card.Image source={{ uri: getImage(project?.item.id) }} />
+      <Pressable onPress={() => setDisplayed(!displayed)}>
+        <Card.Image source={{ uri: getImage(project?.item.id) }} />
+      </Pressable>
+      {displayed &&
+        <View>
+          <Card.Title style={styles.descriptionTitle}> Conocé este proyecto: </Card.Title>
+          <View style={styles.descriptionContainer}>
+            <Text>{project?.item.description}</Text>
+            <Text style={styles.goalValue}>Monto necesario: {formattedGoalValue}</Text>
+          </View>
+        </View>
+      }
       {project?.item.percentage < 1 ? (
         <Button
           title='apoyar este proyecto'
@@ -72,6 +86,17 @@ const styles = StyleSheet.create({
     position: 'absolute',
     fontSize: 20,
     textAlign: 'center'
+  },
+  descriptionTitle: {
+    marginTop: 30,
+  },
+  descriptionContainer: {
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20,
+  },
+  goalValue: {
+    paddingTop: 20,
   },
 });
 
