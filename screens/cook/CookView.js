@@ -117,7 +117,7 @@ const CookView = _ => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#fc9f4e',
   },
 });
 

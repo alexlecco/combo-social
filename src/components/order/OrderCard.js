@@ -12,6 +12,12 @@ const OrderCard = ({ order, combo, project }) => {
   const {currentUser} = state;
   const formattedPrice = currencyFormatter(combo?.price);
 
+  const isWaiterUser = currentUser.roll === rolls.WAITER;
+  const isCookUser = currentUser.roll === rolls.COOK;
+  const isPendingOrder = order?.item.status === orderStatus.PENDING.status;
+  const isAcceptedOrder = order?.item.status === orderStatus.ACCEPTED.status;
+  const isDeliveredOrder = order?.item.status === orderStatus.DELIVERED.status;
+
   const handleQrScanButton = () => {
     setState({
       ...state,
@@ -46,15 +52,15 @@ const OrderCard = ({ order, combo, project }) => {
 
   // TODOx: refactor this function
   const orderCardButton = _ => {
-    if (order?.item.status === orderStatus.PENDING.status && currentUser.roll === rolls.WAITER) {
+    if (isPendingOrder && isWaiterUser) {
       return <Button title={orderStatus.PENDING.textButton} onPress={handleQrScanButton} />
     }
 
-    if (order?.item.status === orderStatus.ACCEPTED.status && currentUser.roll === rolls.WAITER) {
+    if (isAcceptedOrder && isWaiterUser) {
       return <Button title={orderStatus.ACCEPTED.textButton} onPress={changeOrderState} />
     }
 
-    if (order?.item.status === orderStatus.DELIVERED.status && currentUser.roll === rolls.WAITER) {
+    if (isDeliveredOrder && isWaiterUser) {
       return <Button title={orderStatus.DELIVERED.textButton} onPress={finishOrder} />
     }
   };
@@ -62,21 +68,21 @@ const OrderCard = ({ order, combo, project }) => {
   const uppercaseStatus = order?.item.status.toUpperCase();
 
   const getSpanishStatus = _ => {
-    if (order?.item.status === orderStatus.PENDING.status) return orderStatus.PENDING.text
-    if (order?.item.status === orderStatus.ACCEPTED.status) return orderStatus.ACCEPTED.text
-    if (order?.item.status === orderStatus.DELIVERED.status) return orderStatus.DELIVERED.text
+    if (isPendingOrder) return orderStatus.PENDING.text
+    if (isAcceptedOrder) return orderStatus.ACCEPTED.text
+    if (isDeliveredOrder) return orderStatus.DELIVERED.text
   };
 
   return(
     <View style={{backgroundColor: orderStatus[uppercaseStatus]?.color, paddingBottom: 20}}>
       <Card>
-        <Card.Title>{combo?.name}</Card.Title>
-        <View style={styles.orderDetail}>
+        <Card.Title style={isCookUser && {fontSize: 30, marginLeft: 20, marginRight: 20}}>{combo?.name}</Card.Title>
+        <View style={[styles.orderDetail, isCookUser && {marginLeft: 30, marginRight: 30}]}>
           <Text>{`mesa: ${order?.item.table}`}</Text>
           <Text>{`estado: ${getSpanishStatus()}`}</Text>
           <Text>{`precio: ${formattedPrice}`}</Text>
         </View>
-        <Card.Image source={{ uri: getImage(combo?.id) }} />
+        {isWaiterUser && <Card.Image source={{ uri: getImage(combo?.id) }} />}
         {orderCardButton()}
       </Card>
     </View>
@@ -86,7 +92,7 @@ const OrderCard = ({ order, combo, project }) => {
 const styles = StyleSheet.create({
   orderDetail: {
     margin: 20,
-  }
+  },
 });
 
 export default OrderCard;
