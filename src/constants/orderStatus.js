@@ -18,7 +18,7 @@ const orderStatus = {
     text: 'entregado',
     color: '#4efc57',
     key: 'DELIVERED',
-    textButton: 'cobrar pedido',
+    textButton: 'Cobrar orden',
   },
   PAYED: {
     status: 'payed',

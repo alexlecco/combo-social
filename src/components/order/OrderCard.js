@@ -5,9 +5,11 @@ import { update, ref, getDatabase, } from 'firebase/database';
 import { AppContext } from '../../../src/context/provider';
 import { orderStatus } from '../../constants';
 import currencyFormatter from '../../utils/currencyFormatter';
+import { rolls } from '../../../src/constants/index';
 
 const OrderCard = ({ order, combo, project }) => {
   const [state, setState] = useContext(AppContext);
+  const {currentUser} = state;
   const formattedPrice = currencyFormatter(combo?.price);
 
   const handleQrScanButton = () => {
@@ -42,10 +44,19 @@ const OrderCard = ({ order, combo, project }) => {
     `https://firebasestorage.googleapis.com/v0/b/combo-social.appspot.com/o/combos%2F${id}.png?alt=media&token=b4b17bce-85c9-42df-9555-d484d99c4c3b`
   );
 
+  // TODOx: refactor this function
   const orderCardButton = _ => {
-    if (order?.item.status === orderStatus.PENDING.status) return <Button title={orderStatus.PENDING.textButton} onPress={handleQrScanButton} />
-    if (order?.item.status === orderStatus.ACCEPTED.status) return <Button title={orderStatus.ACCEPTED.textButton} onPress={changeOrderState} />
-    if (order?.item.status === orderStatus.DELIVERED.status) return <Button title={orderStatus.DELIVERED.textButton} onPress={finishOrder} />
+    if (order?.item.status === orderStatus.PENDING.status && currentUser.roll === rolls.WAITER) {
+      return <Button title={orderStatus.PENDING.textButton} onPress={handleQrScanButton} />
+    }
+
+    if (order?.item.status === orderStatus.ACCEPTED.status && currentUser.roll === rolls.WAITER) {
+      return <Button title={orderStatus.ACCEPTED.textButton} onPress={changeOrderState} />
+    }
+
+    if (order?.item.status === orderStatus.DELIVERED.status && currentUser.roll === rolls.WAITER) {
+      return <Button title={orderStatus.DELIVERED.textButton} onPress={finishOrder} />
+    }
   };
 
   const uppercaseStatus = order?.item.status.toUpperCase();

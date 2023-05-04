@@ -15,7 +15,7 @@ const CookView = _ => {
   const [orders, setOrders] = useState([]);
   const [combos, setCombos] = useState([]);
   const [projects, setProjects] = useState([]);
-  const centerComponent = `${RNEconstants.waiterView?.headerTitle?.text} ${currentUser.username}`;
+  const centerComponent = `${RNEconstants.cookView?.headerTitle?.text} ${currentUser.username}`;
 
   useEffect(() => {
     const OrdersRef = ref(database, 'orders/');
