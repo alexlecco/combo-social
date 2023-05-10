@@ -22,6 +22,9 @@ const WaiterView = _ => {
     const CombosRef = ref(database, 'combos/');
     const ProjectsRef = ref(database, 'projects/');
 
+    const pendingOrder = orderStatus.PENDING.status;
+    const PayedOrder = orderStatus.PAYED.status;
+
     onValue(OrdersRef, snap => {
       let orders = [];
       snap.forEach((child) => {
@@ -34,7 +37,7 @@ const WaiterView = _ => {
           id: child.key,
         });
       });
-      setOrders(orders.filter(order => order.status !== orderStatus.PAYED.status));
+      setOrders(orders.filter(order => order.status !== PayedOrder && order.status !== pendingOrder));
     });
 
     onValue(CombosRef, snap => {
@@ -81,6 +84,19 @@ const WaiterView = _ => {
     });
   };
 
+  const handleQrScanButton = () => {
+    setState({
+      ...state,
+      currentScreen: 9,
+    });
+  };
+
+  const orderCardButton = _ => (
+    <View style={{marginTop: 40}}>
+      <Button title={orderStatus.PENDING.textButton} onPress={handleQrScanButton} />
+    </View>
+  );
+
   const buildOrder = order => {
     const combo = combos.find(combo => combo.id === order?.item.selectedCombo);
     const project = projects.find(project => project.id === order?.item.selectedProject);
@@ -90,7 +106,10 @@ const WaiterView = _ => {
 
   const buildOrdersList = _ => (
     orders.length === 0 ? (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}><Text> No hay ordenes por tomar </Text></View>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text> No hay ordenes por tomar </Text>
+        {orderCardButton()}
+      </View>
     ) : (
       <ScrollView>
         <View style={{ paddingBottom: 15 }}>
